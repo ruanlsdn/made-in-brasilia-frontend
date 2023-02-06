@@ -1,11 +1,16 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { About, Banner, Footer, Navbar } from "./components";
-import { Home } from "./pages";
+import { Cities, Culture, Entertainment, Home } from "./pages";
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <Routes>
+        <Route path={"/"} element={<Home />} />
+        <Route path={"cities"} element={<Cities />} />
+        <Route path={"culture"} element={<Culture />} />
+        <Route path={"entertainment"} element={<Entertainment />} />
+      </Routes>
     </div>
   );
 }

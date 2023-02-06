@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  background-color: var(--footer-color);
+  background-color: var(--primary-color);
   padding: 6rem;
   gap: 8rem;
 }

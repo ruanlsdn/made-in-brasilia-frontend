@@ -3,21 +3,21 @@ import "./navbar.css";
 import { FiSun, FiUser } from "react-icons/fi";
 
 const Navbar = () => {
-  const isLoggedIn: boolean = false;
+  const isLoggedIn: boolean = true;
   return (
     <div className="navbar-container" id="header">
       <FiSun size={35} color={"white"} />
       {isLoggedIn ? (
         <>
           <div className="navbar-links">
-            <NavLink className="navbar-links-item" to={""}>
-              <span>HOME</span>
+            <NavLink className="navbar-links-item" to={"/cities"}>
+              <span>CIDADES</span>
             </NavLink>
-            <NavLink className="navbar-links-item" to={""}>
-              <span>LUGARES</span>
+            <NavLink className="navbar-links-item" to={"/culture"}>
+              <span>CULTURA</span>
             </NavLink>
-            <NavLink className="navbar-links-item" to={""}>
-              <span>INSTITUIÇÕES</span>
+            <NavLink className="navbar-links-item" to={"/entertainment"}>
+              <span>ENTRETENIMENTO</span>
             </NavLink>
           </div>
           <div className="navbar-links-logout">
