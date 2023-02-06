@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+.App{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.gradient-text {
+  background: #FFDE05;
+  background: linear-gradient(to right, #FFDE05 0%, #69CF61 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-bg {  
+  width: 100%;
+    /* ff 3.6+ */
+      background: -moz-radial-gradient(circle at 10% 19%, rgba(56, 56, 56, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    
+      /* safari 5.1+,chrome 10+ */
+      background: -webkit-radial-gradient(circle at 10% 19%, rgba(56, 56, 56, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    
+      /* opera 11.10+ */
+      background: -o-radial-gradient(circle at 10% 19%, rgba(56, 56, 56, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    
+      /* ie 10+ */
+      background: -ms-radial-gradient(circle at 10% 19%, rgba(56, 56, 56, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    
+      /* global 92%+ browsers support */
+      background: radial-gradient(circle at 10% 19%, rgba(56, 56, 56, 1) 0%, rgba(0, 0, 0, 1) 100%);
+}

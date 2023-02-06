@@ -1,0 +1,40 @@
+.banner {
+    display: flex;
+    padding: 1rem 2rem;
+}
+
+.banner-content {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+}
+
+.banner-content-texts {
+    width: 50%;
+    font-family: var(--font-family);
+}
+
+.banner-content-texts h1{
+    font-weight: 800;
+    font-size: 60px;
+    line-height: 75px;
+    letter-spacing: -0.04rem
+}
+
+.banner-content-texts p {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    color: var(--secondary-color);
+    margin-top: 1.5rem;
+}
+
+.banner-content-img img{
+    height: 800px;
+    width: 900px;
+    color: white;
+}
+
