@@ -1,6 +1,5 @@
 import "./App.css";
-import { Banner, LastUpdatedPlaces, Navbar } from "./components";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { About, Banner, Navbar } from "./components";
 
 function App() {
   return (
@@ -9,6 +8,7 @@ function App() {
         <Navbar />
         <Banner />
       </div>
+      <About />
     </div>
   );
 }
