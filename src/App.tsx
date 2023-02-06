@@ -5,13 +5,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <div className="gradient-bg">
-          <Navbar />
-          <Banner />
-          <LastUpdatedPlaces />
-        </div>
-      </BrowserRouter>
+      <div className="gradient-bg">
+        <Navbar />
+        <Banner />
+      </div>
     </div>
   );
 }

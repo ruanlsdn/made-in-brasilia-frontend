@@ -17,6 +17,11 @@ const Banner = () => {
             accusamus ea laborum dicta repellat nesciunt, quo totam atque
             dolores veniam voluptatem. Blanditiis, reprehenderit.
           </p>
+          <div className="banner-content-get-started">
+            <button className="gradient-bg-colorful">
+              <span>Get Started</span>
+            </button>
+          </div>
         </div>
         <div className="banner-content-img">
           <img src={brasilia_banner} alt="catedral" />
