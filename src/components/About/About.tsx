@@ -24,7 +24,7 @@ const ABOUT_DATA: AboutData[] = [
 
 const About = () => {
   return (
-    <div className="about">
+    <div className="about" id="features">
       <div className="about-content">
         <div className="about-content-title">
           <h1 className="gradient-text">
