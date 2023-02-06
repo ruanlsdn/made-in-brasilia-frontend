@@ -59,8 +59,8 @@ const Footer = () => {
     <div className="footer" id="footer">
       <FiSun size={50} color={"white"} />
       <div className="footer-content">
-        {FOOTER_LINKS.map((item) => (
-          <FooterLink group={item.group} links={item.links} />
+        {FOOTER_LINKS.map((item, index) => (
+          <FooterLink key={index} group={item.group} links={item.links} />
         ))}
       </div>
     </div>

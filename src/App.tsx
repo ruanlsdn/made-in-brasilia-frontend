@@ -1,15 +1,11 @@
 import "./App.css";
 import { About, Banner, Footer, Navbar } from "./components";
+import { Home } from "./pages";
 
 function App() {
   return (
     <div className="App">
-      <div className="gradient-bg">
-        <Navbar />
-        <Banner />
-      </div>
-      <About />
-      <Footer />
+      <Home />
     </div>
   );
 }

@@ -7,7 +7,7 @@ const FooterLink = ({ group, links }: FooterLinks) => {
     <div className="footer-link">
       <h3>{group}</h3>
       {links.map((link, index) => (
-        <div>
+        <div key={index}>
           <a href="#">{link.title}</a>
         </div>
       ))}

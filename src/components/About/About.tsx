@@ -20,6 +20,14 @@ const ABOUT_DATA: AboutData[] = [
     title: "Lorem ipsum dolor sit ",
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
   },
+  {
+    title: "Lorem ipsum dolor sit ",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  },
+  {
+    title: "Lorem ipsum dolor sit ",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  },
 ];
 
 const About = () => {
