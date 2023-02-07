@@ -5,7 +5,7 @@ import { ToggleMenu } from "..";
 import "./navbar.css";
 
 const Navbar = () => {
-  const isLoggedIn: boolean = false;
+  const isLoggedIn: boolean = true;
   const { pathname } = useLocation();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
 
