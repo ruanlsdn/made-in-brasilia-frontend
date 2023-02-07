@@ -72,7 +72,7 @@ const SinglePlace = () => {
           Lorem, ipsum dolor sit!
         </h1>
         <div className="single-place-rate">
-          <Rating initialValue={5} />
+          <Rating initialValue={0} />
           <textarea placeholder="Leave a comment..." />
           <button className="gradient-bg-colorful">
             <span>Lorem, ipsum</span>
