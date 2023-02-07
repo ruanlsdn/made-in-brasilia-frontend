@@ -1,26 +1,21 @@
-import React from "react";
-import "./banner.css";
+import { Link } from "react-router-dom";
 import brasilia_banner from "../../assets/brasilia_banner.png";
+import { HOME_PAGE } from "../../constants";
+import "./banner.css";
 
 const Banner = () => {
   return (
     <div className="banner">
       <div className="banner-content">
         <div className="banner-content-texts">
-          <h1 className="gradient-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-            consectetur ipsa ex minima facilis amet.
-          </h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam
-            possimus, obcaecati consequatur quod sit, aliquid exercitationem
-            accusamus ea laborum dicta repellat nesciunt, quo totam atque
-            dolores veniam voluptatem. Blanditiis, reprehenderit.
-          </p>
+          <h1 className="gradient-text">{HOME_PAGE.title_header}</h1>
+          <p>{HOME_PAGE.description_header}</p>
           <div className="banner-content-get-started">
-            <button className="gradient-bg-colorful">
-              <span>Get Started</span>
-            </button>
+            <Link to={"/cities"}>
+              <button className="gradient-bg-colorful">
+                <span>{HOME_PAGE.text_button_header}</span>
+              </button>
+            </Link>
           </div>
         </div>
         <div className="banner-content-img">

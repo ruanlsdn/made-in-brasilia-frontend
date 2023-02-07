@@ -55,6 +55,12 @@ const SinglePlace = () => {
             <p>Lorem ipsum dolor</p>
           </div>
           <div className="single-place-carousel-description-texts">
+            <p>Lorem ipsum dolor</p>
+          </div>
+          <div className="single-place-carousel-description-texts">
+            <p>Lorem ipsum dolor</p>
+          </div>
+          <div className="single-place-carousel-description-texts">
             <Rating
               SVGstyle={{
                 height: "30px",

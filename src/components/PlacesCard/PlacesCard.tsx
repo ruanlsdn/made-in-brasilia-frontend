@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import dummy_bar from "../../assets/dummy_bar.jpg";
 import "./places-card.css";
@@ -17,9 +18,11 @@ const PlacesCard = ({ title, summary, rate }: PlacesCardProps) => {
         <h1>{title}</h1>
         <p>{summary}</p>
         <Rating readonly initialValue={rate} />
-        <button className="gradient-bg-colorful">
-          <span>Saiba mais</span>
-        </button>
+        <Link to={"/single-place"}>
+          <button className="gradient-bg-colorful">
+            <span>Saiba mais</span>
+          </button>
+        </Link>
       </div>
     </div>
   );

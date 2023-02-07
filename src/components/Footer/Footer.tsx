@@ -1,4 +1,5 @@
 import { FiSun } from "react-icons/fi";
+import { HOME_PAGE } from "../../constants";
 import "./footer.css";
 import FooterLink from "./FooterLink";
 
@@ -14,41 +15,46 @@ export type FooterLinks = {
 
 const FOOTER_LINKS: FooterLinks[] = [
   {
-    group: "Contact us",
+    group: `${HOME_PAGE.title_group3_footer}`,
     links: [
       {
-        title: "Dummy Linkedin",
-        path: "http://www.dummy",
+        title: `${HOME_PAGE.title_link6_footer}`,
+        path: `${HOME_PAGE.path1_footer}`,
       },
       {
-        title: "Dummy Linkedin",
-        path: "http://www.dummy",
+        title: `${HOME_PAGE.title_link7_footer}`,
+        path: `${HOME_PAGE.path1_footer}`,
       },
     ],
   },
   {
-    group: "Contact us",
+    group: `${HOME_PAGE.title_group1_footer}`,
     links: [
       {
-        title: "Dummy Linkedin",
-        path: "http://www.dummy",
+        title: `${HOME_PAGE.title_link1_footer}`,
+        path: `${HOME_PAGE.path1_footer}`,
       },
       {
-        title: "Dummy Linkedin",
-        path: "http://www.dummy",
+        title: `${HOME_PAGE.title_link2_footer}`,
+        path: `${HOME_PAGE.path1_footer}`,
       },
     ],
   },
+
   {
-    group: "Contact us",
+    group: `${HOME_PAGE.title_group2_footer}`,
     links: [
       {
-        title: "Dummy Linkedin",
-        path: "http://www.dummy",
+        title: `${HOME_PAGE.title_link3_footer}`,
+        path: `${HOME_PAGE.path1_footer}`,
       },
       {
-        title: "Dummy Linkedin",
-        path: "http://www.dummy",
+        title: `${HOME_PAGE.title_link4_footer}`,
+        path: `${HOME_PAGE.path1_footer}`,
+      },
+      {
+        title: `${HOME_PAGE.title_link5_footer}`,
+        path: `${HOME_PAGE.path1_footer}`,
       },
     ],
   },

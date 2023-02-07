@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import dummy_bsb from "../../assets/dummy_bsb.jpg";
 import "./cities-card.css";
 
@@ -18,9 +19,11 @@ const CitiesCard = ({ index, title, history }: CityDataProps) => {
       <div className="cities-card-texts">
         <h1>{title}</h1>
         <p>{history}</p>
-        <button className="cities-card-link gradient-bg-colorful">
-          <span> Veja mais!</span>
-        </button>
+        <Link to={"/places"}>
+          <button className="cities-card-link gradient-bg-colorful">
+            <span> Veja mais!</span>
+          </button>
+        </Link>
       </div>
     </div>
   );

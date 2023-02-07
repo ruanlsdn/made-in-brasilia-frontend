@@ -11,6 +11,10 @@
   gap: 5rem;
 }
 
+.banner-content img {
+  width: 800px;
+}
+
 .banner-content-texts {
   font-family: var(--font-family);
 }

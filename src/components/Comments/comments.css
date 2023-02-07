@@ -1,6 +1,6 @@
 .comments-content {
   display: flex;
-  width: 65%;
+  width: 90%;
   height: 90px;
   align-items: center;
   border-radius: 15px;
@@ -51,7 +51,6 @@ p {
 
 @media screen and (max-width: 768px) {
   .comments-content {
-    width: 100%;
     padding: 6rem 1rem;
   }
 

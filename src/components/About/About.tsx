@@ -1,4 +1,5 @@
 import React from "react";
+import { HOME_PAGE } from "../../constants";
 import "./about.css";
 import AboutBlock from "./AboutBlock";
 
@@ -9,24 +10,24 @@ type AboutData = {
 
 const ABOUT_DATA: AboutData[] = [
   {
-    title: "Lorem ipsum dolor sit ",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    title: `${HOME_PAGE.title_functionality1_body}`,
+    text: `${HOME_PAGE.description_functionality1_body}`,
   },
   {
-    title: "Lorem ipsum dolor sit ",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    title: `${HOME_PAGE.title_functionality2_body}`,
+    text: `${HOME_PAGE.description_functionality2_body}`,
   },
   {
-    title: "Lorem ipsum dolor sit ",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    title: `${HOME_PAGE.title_functionality3_body}`,
+    text: `${HOME_PAGE.description_functionality3_body}`,
   },
   {
-    title: "Lorem ipsum dolor sit ",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    title: `${HOME_PAGE.title_functionality4_body}`,
+    text: `${HOME_PAGE.description_functionality4_body}`,
   },
   {
-    title: "Lorem ipsum dolor sit ",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    title: `${HOME_PAGE.title_functionality5_body}`,
+    text: `${HOME_PAGE.description_functionality5_body}`,
   },
 ];
 
@@ -35,16 +36,8 @@ const About = () => {
     <div className="about" id="features">
       <div className="about-content">
         <div className="about-content-title">
-          <h1 className="gradient-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum
-            dolor sit amet consectetur adipisicing elit.
-          </h1>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa
-            delectus, adipisci sequi eum labore a. Non et aliquid ipsam
-            consequuntur! Veniam sed quasi ex saepe rerum tenetur velit
-            recusandae rem?
-          </p>
+          <h1 className="gradient-text">{HOME_PAGE.title_body}</h1>
+          <p>{HOME_PAGE.description_body}</p>
         </div>
         <div className="about-content-functinality">
           {ABOUT_DATA.map((item, index) => (
