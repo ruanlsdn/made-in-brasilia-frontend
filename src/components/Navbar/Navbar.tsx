@@ -1,29 +1,23 @@
-import { NavLink } from "react-router-dom";
+import { FiMessageSquare, FiSun, FiUser } from "react-icons/fi";
 import "./navbar.css";
-import { FiSun, FiUser } from "react-icons/fi";
 
 const Navbar = () => {
   const isLoggedIn: boolean = true;
+
   return (
     <div className="navbar-container" id="header">
       <FiSun size={35} color={"white"} />
       {isLoggedIn ? (
         <>
-          <div className="navbar-links">
-            <NavLink className="navbar-links-item" to={"/cities"}>
-              <span>CIDADES</span>
-            </NavLink>
-            <NavLink className="navbar-links-item" to={"/culture"}>
-              <span>CULTURA</span>
-            </NavLink>
-            <NavLink className="navbar-links-item" to={"/entertainment"}>
-              <span>ENTRETENIMENTO</span>
-            </NavLink>
+          <div className="navbar-title">
+            <h3 className="gradient-text">Brasília de A-Z</h3>
           </div>
-          <div className="navbar-links-logout">
+          <div className="navbar-options">
+            <button>
+              <FiMessageSquare size={30} />
+            </button>
             <button>
               <FiUser size={30} />
-              <span>Logout</span>
             </button>
           </div>
         </>
@@ -40,6 +34,9 @@ const Navbar = () => {
               <span>FOOTER</span>
             </a>
           </div>
+          <a className="navbar-links navbar-links-item" href="">
+            <span>LOGIN</span>
+          </a>
         </>
       )}
     </div>

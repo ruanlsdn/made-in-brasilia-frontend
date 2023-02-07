@@ -1,7 +1,7 @@
-import { CitiesCard, Footer, Navbar } from "../../components";
+import { Alphabet, CitiesCard, Navbar } from "../../components";
 import "./cities.css";
 
-export type CityData = {
+type CityData = {
   title: string;
   history: string;
 };
@@ -31,18 +31,16 @@ const Cities = () => {
     <>
       <div className="gradient-bg">
         <Navbar />
-        <div className="cities-alphabet-container">
-          {ALFHABET.map((letter, index) => (
-            <a className="gradient-text" key={index} href="#">
-              {letter}
-              <p>-</p>
-            </a>
-          ))}
-        </div>
+        <Alphabet path="" />
       </div>
       <div className="cities-content">
         {CITIES_DATA.map((city, index) => (
-          <CitiesCard index={index} title={city.title} history={city.history} />
+          <CitiesCard
+            key={index}
+            index={index}
+            title={city.title}
+            history={city.history}
+          />
         ))}
       </div>
     </>

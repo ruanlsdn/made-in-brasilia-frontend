@@ -1,0 +1,18 @@
+.alphabet {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 6rem;
+  gap: 2rem;
+}
+
+.alphabet a {
+  font-family: var(--font-family);
+  font-size: 24px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.alphabet a:hover {
+  transform: translateY(-5px);
+}
