@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Cities, Home, Places } from "./pages";
+import { Cities, Home, Places, SinglePlace } from "./pages";
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
         <Route path={"/"} element={<Home />} />
         <Route path={"cities"} element={<Cities />} />
         <Route path={"places"} element={<Places />} />
+        <Route path={"single-place"} element={<SinglePlace />} />
       </Routes>
     </div>
   );

@@ -1,0 +1,132 @@
+.single-place-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+.single-place-carousel {
+  width: 100%;
+  box-shadow: 0px 0px 10px var(--secondary-color);
+}
+
+.single-place-carousel img {
+  height: 800px;
+  object-fit: fill;
+}
+
+.single-place-carousel-description {
+  display: flex;
+  width: 75%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 6rem;
+}
+
+.single-place-carousel-description-texts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.single-place-carousel-description-texts h1,
+p {
+  font-family: var(--font-family);
+}
+
+.single-place-carousel-description-texts h1 {
+  color: var(--text-color);
+}
+
+.single-place-carousel-description-texts p {
+  color: var(--secondary-color);
+  font-size: 40px;
+}
+
+.single-place-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  width: 100%;
+  padding: 4rem 6rem;
+  margin-top: 1rem;
+  background-color: var(--primary-color);
+}
+
+.single-place-description h1,
+p {
+  font-family: var(--font-family);
+}
+
+.single-place-description h1 {
+  color: var(--text-color);
+  font-size: 50px;
+}
+
+.single-place-description p {
+  color: var(--secondary-color);
+  font-size: 30px;
+  line-height: 50px;
+  max-width: 1280px;
+  text-align: justify;
+}
+
+.single-place-rate-header {
+  margin-top: 1rem;
+  font-family: var(--font-family);
+  font-size: 48px;
+  margin-bottom: 5rem;
+}
+
+.single-place-rate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+}
+
+.single-place-rate-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.single-place-rate textarea {
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+  width: 800px;
+  font-size: 22px;
+  border: none;
+  text-decoration: none;
+  font-family: var(--font-family);
+}
+
+.single-place-rate button {
+  width: 200px;
+  height: 40px;
+  font-family: var(--font-family);
+  font-weight: bold;
+  transition: transform 0.3s ease-in-out;
+}
+
+.single-place-rate button:hover {
+  transform: translateY(-5px);
+}
+
+.single-place-comments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 4rem 6rem;
+  margin-top: 1rem;
+  background-color: var(--primary-color);
+}
