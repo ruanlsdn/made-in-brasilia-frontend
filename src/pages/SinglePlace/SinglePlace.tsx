@@ -55,7 +55,14 @@ const SinglePlace = () => {
             <p>Lorem ipsum dolor</p>
           </div>
           <div className="single-place-carousel-description-texts">
-            <Rating readonly initialValue={5} />
+            <Rating
+              SVGstyle={{
+                height: "30px",
+              }}
+              className="single-place-stars"
+              readonly
+              initialValue={5}
+            />
             <p>5</p>
           </div>
         </div>
@@ -68,16 +75,6 @@ const SinglePlace = () => {
             libero.
           </p>
         </div>
-        <h1 className="single-place-rate-header gradient-text">
-          Lorem, ipsum dolor sit!
-        </h1>
-        <div className="single-place-rate">
-          <Rating initialValue={0} />
-          <textarea placeholder="Leave a comment..." />
-          <button className="gradient-bg-colorful">
-            <span>Lorem, ipsum</span>
-          </button>
-        </div>
         <div className="single-place-comments">
           {COMMENTS_DATA.map((comment, index) => (
             <Comments
@@ -86,6 +83,15 @@ const SinglePlace = () => {
               text={comment.text}
             />
           ))}
+        </div>
+        <h1 className="single-place-rate-header gradient-text">
+          Lorem, ipsum dolor sit!
+        </h1>
+        <div className="single-place-rate">
+          <textarea maxLength={100} placeholder="Leave a comment..." />
+          <button className="gradient-bg-colorful">
+            <span>Lorem, ipsum</span>
+          </button>
         </div>
       </div>
     </>

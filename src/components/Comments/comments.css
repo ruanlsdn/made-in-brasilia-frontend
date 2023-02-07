@@ -48,3 +48,18 @@ p {
 .comments-content-thumbs button:hover {
   transform: translateY(-5px);
 }
+
+@media screen and (max-width: 768px) {
+  .comments-content {
+    width: 100%;
+    padding: 6rem 1rem;
+  }
+
+  .comments-content-user-texts h3 {
+    font-size: 15px;
+  }
+
+  .comments-content-user-texts p {
+    font-size: 13px;
+  }
+}
