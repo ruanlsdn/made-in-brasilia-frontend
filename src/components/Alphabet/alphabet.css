@@ -8,13 +8,15 @@
   gap: 2rem;
 }
 
-.alphabet a {
+.alphabet button {
   font-family: var(--font-family);
   font-size: 24px;
+  cursor: pointer;
+  border: none;
   transition: transform 0.3s ease-in-out;
 }
 
-.alphabet a:hover {
+.alphabet button:hover {
   transform: translateY(-5px);
 }
 
@@ -23,7 +25,7 @@
     max-width: 700px;
   }
 
-  .alphabet a {
+  .alphabet button {
     font-size: 16px;
   }
 }

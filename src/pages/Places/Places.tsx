@@ -1,56 +1,37 @@
-import React from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Alphabet, Navbar, PlacesCard } from "../../components";
+import { useDataControlContext } from "../../contexts/DataControlContext";
+import { listAllPostRequest } from "../../services/api";
 import "./places.css";
 
-type PlaceData = {
-  title: string;
-  summary: string;
-  rate: number;
-};
-
-const PLACES_DATA: PlaceData[] = [
-  {
-    title: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
-    summary:
-      " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem tempore asperiores dolores in facilis ex distinctio quia qui deserunt. Asperiores, quibusdam! Autem tempora facere pariatur debitis. Fugit commodi ullam quo!",
-    rate: 5,
-  },
-  {
-    title: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
-    summary:
-      " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem tempore asperiores dolores in facilis ex distinctio quia qui deserunt. Asperiores, quibusdam! Autem tempora facere pariatur debitis. Fugit commodi ullam quo!",
-
-    rate: 5,
-  },
-  {
-    title: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
-    summary:
-      " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem tempore asperiores dolores in facilis ex distinctio quia qui deserunt. Asperiores, quibusdam! Autem tempora facere pariatur debitis. Fugit commodi ullam quo!",
-    rate: 5,
-  },
-  {
-    title: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
-    summary:
-      " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem tempore asperiores dolores in facilis ex distinctio quia qui deserunt. Asperiores, quibusdam! Autem tempora facere pariatur debitis. Fugit commodi ullam quo!",
-    rate: 5,
-  },
-];
-
 const Places = () => {
+  const { filteredPosts, setPosts, setFilteredPosts } = useDataControlContext();
+  const { cityId } = useParams();
+
+  const fetchPosts = async () => {
+    try {
+      const response = await listAllPostRequest(cityId);
+      setPosts(response.data);
+      setFilteredPosts(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
   return (
     <>
       <div className="gradient-bg">
         <Navbar />
-        <Alphabet path="" />
+        <Alphabet />
       </div>
       <div className="places-content">
-        {PLACES_DATA.map((place, index) => (
-          <PlacesCard
-            key={index}
-            title={place.title}
-            summary={place.summary}
-            rate={place.rate}
-          />
+        {filteredPosts.map((place, index) => (
+          <PlacesCard key={index} place={place} />
         ))}
       </div>
     </>

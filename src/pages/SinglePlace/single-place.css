@@ -72,7 +72,7 @@ p {
   font-size: 22px;
   line-height: 35px;
   max-width: 1280px;
-  text-align: justify;
+  text-align: center;
 }
 
 .single-place-rate-header {
@@ -94,10 +94,11 @@ p {
   margin-top: 1rem;
   margin-bottom: 1rem;
   width: 50%;
-  font-size: 22px;
+  font-size: 20px;
   border: none;
   text-decoration: none;
   font-family: var(--font-family);
+  padding: 10px;
 }
 
 .single-place-rate button {
@@ -148,6 +149,7 @@ p {
 
   .single-place-description h1 {
     font-size: 24px;
+    text-align: center;
   }
 
   .single-place-description p {
@@ -174,15 +176,10 @@ p {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1368px) {
   .single-place-carousel-description {
     flex-direction: column;
     gap: 3rem;
     padding: 2rem;
-  }
-
-  .single-place-description h1 {
-    font-size: 24px;
-    text-align: center;
   }
 }

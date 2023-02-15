@@ -1,13 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { ApplicationControlProvider } from "./contexts/ApplicationControlContext";
+import { DataControlProvider } from "./contexts/DataControlContext";
 import "./index.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <ApplicationControlProvider>
+        <DataControlProvider>
+          <App />
+        </DataControlProvider>
+      </ApplicationControlProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -38,9 +38,9 @@
 
 .cities-card-link {
   max-width: 150px;
-  min-width: 150px;
-  min-height: 50px;
-  font-size: 18px;
+  min-width: 120px;
+  min-height: 40px;
+  font-size: 15px;
   font-family: var(--font-family);
   cursor: pointer;
   border: none;

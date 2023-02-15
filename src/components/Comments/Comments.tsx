@@ -18,14 +18,14 @@ const Comments = ({ username, text }: CommentsProps) => {
           <p>{text}</p>
         </div>
       </div>
-      <div className="comments-content-thumbs">
+      {/* <div className="comments-content-thumbs">
         <button>
           <FiThumbsUp size={25} color="white" />
         </button>
         <button>
           <FiThumbsDown size={25} color="white" />
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

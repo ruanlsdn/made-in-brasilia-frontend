@@ -2,9 +2,11 @@ import { useState } from "react";
 import { FiMessageSquare, FiSun, FiUser, FiMenu } from "react-icons/fi";
 import { NavLink, useLocation } from "react-router-dom";
 import { ToggleMenu } from "..";
+import { useApplicationControlContext } from "../../contexts/ApplicationControlContext";
 import "./navbar.css";
 
 const Navbar = () => {
+  const { previousLocation } = useApplicationControlContext();
   const isLoggedIn: boolean = true;
   const { pathname } = useLocation();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
@@ -13,7 +15,27 @@ const Navbar = () => {
     <>
       <div className="navbar-container" id="header">
         <FiSun className="logo" size={35} color={"white"} />
-        {isLoggedIn && pathname.includes("/single-place") && (
+        {isLoggedIn && pathname.includes("single-place") && (
+          <>
+            <div className="navbar-links">
+              <NavLink
+                className="navbar-links-item"
+                to={previousLocation?.pathname}
+              >
+                <span>LUGARES</span>
+              </NavLink>
+            </div>
+            <div className="navbar-options">
+              <button>
+                <FiMessageSquare size={30} />
+              </button>
+              <button>
+                <FiUser size={30} />
+              </button>
+            </div>
+          </>
+        )}
+        {isLoggedIn && pathname.includes("/place") && (
           <>
             <div className="navbar-links">
               <NavLink className="navbar-links-item" to={"/cities"}>
@@ -30,7 +52,7 @@ const Navbar = () => {
             </div>
           </>
         )}
-        {isLoggedIn && !pathname.includes("/single-place") && (
+        {isLoggedIn && pathname.includes("/cities") && (
           <>
             <div className="navbar-title">
               <h3 className="navbar-links-item">BRASÍLIA DE A-Z</h3>

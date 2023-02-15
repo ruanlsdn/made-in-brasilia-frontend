@@ -1,6 +1,7 @@
 .places-card-container {
   display: flex;
   flex-direction: row;
+
   width: 500px;
   flex-wrap: wrap;
   border-radius: 15px;
@@ -15,6 +16,8 @@
 
 .places-card-container img {
   width: 500px;
+  min-height: 250px;
+  max-height: 250px;
 }
 
 .places-card-content {
@@ -37,8 +40,16 @@ p {
 }
 
 .places-card-content p {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  width: 100%;
   font-size: 18px;
   line-height: 25px;
+  max-height: 100px;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
   color: var(--secondary-color);
 }
 
