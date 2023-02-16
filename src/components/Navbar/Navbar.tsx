@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { FiMessageSquare, FiSun, FiUser, FiMenu } from "react-icons/fi";
+import { FiMenu, FiMessageSquare, FiSun, FiUser } from "react-icons/fi";
 import { NavLink, useLocation } from "react-router-dom";
 import { ToggleMenu } from "..";
-import { useApplicationControlContext } from "../../contexts/ApplicationControlContext";
 import "./navbar.css";
 
 const Navbar = () => {
-  const { previousLocation } = useApplicationControlContext();
   const isLoggedIn: boolean = true;
   const { pathname } = useLocation();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
@@ -18,10 +16,7 @@ const Navbar = () => {
         {isLoggedIn && pathname.includes("single-place") && (
           <>
             <div className="navbar-links">
-              <NavLink
-                className="navbar-links-item"
-                to={previousLocation?.pathname}
-              >
+              <NavLink className="navbar-links-item" to={"/places"}>
                 <span>LUGARES</span>
               </NavLink>
             </div>

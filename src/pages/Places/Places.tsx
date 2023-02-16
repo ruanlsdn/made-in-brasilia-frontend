@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { Alphabet, Navbar, PlacesCard } from "../../components";
 import { useDataControlContext } from "../../contexts/DataControlContext";
 import { listAllPostRequest } from "../../services/api";
@@ -7,11 +7,11 @@ import "./places.css";
 
 const Places = () => {
   const { filteredPosts, setPosts, setFilteredPosts } = useDataControlContext();
-  const { cityId } = useParams();
+  const { state } = useLocation();
 
   const fetchPosts = async () => {
     try {
-      const response = await listAllPostRequest(cityId);
+      const response = await listAllPostRequest(state.cityId);
       setPosts(response.data);
       setFilteredPosts(response.data);
     } catch (error) {

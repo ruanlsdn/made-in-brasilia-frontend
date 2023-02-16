@@ -1,6 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import dummy_bsb from "../../assets/dummy_bsb.jpg";
-import { useApplicationControlContext } from "../../contexts/ApplicationControlContext";
 import { iCity } from "../../interfaces/iCity";
 import "./cities-card.css";
 
@@ -10,8 +9,6 @@ type CityDataProps = {
 };
 
 const CitiesCard = ({ index, city }: CityDataProps) => {
-  const { setPreviousLocation } = useApplicationControlContext();
-  const location = useLocation();
   return (
     <div
       className={`cities-card-container  ${
@@ -22,11 +19,8 @@ const CitiesCard = ({ index, city }: CityDataProps) => {
       <div className="cities-card-texts">
         <h1>{city.title}</h1>
         <p>{city.text}</p>
-        <Link to={`/places/${city.id}`}>
-          <button
-            className="cities-card-link gradient-bg-colorful"
-            onClick={() => setPreviousLocation(location)}
-          >
+        <Link state={{ cityId: city.id }} to={"/places"}>
+          <button className="cities-card-link gradient-bg-colorful">
             <span> Visite!</span>
           </button>
         </Link>

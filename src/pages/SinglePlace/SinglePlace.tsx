@@ -1,3 +1,4 @@
+import { Pagination } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import { useParams } from "react-router-dom";
@@ -120,15 +121,6 @@ const SinglePlace = () => {
           <h1>{post?.name}</h1>
           <p>{post?.text}</p>
         </div>
-        <div className="single-place-comments">
-          {post?.Comment.map((comment, index) => (
-            <Comments
-              key={index}
-              username={comment.User.username}
-              text={comment.text}
-            />
-          ))}
-        </div>
         <h1 className="single-place-rate-header gradient-text">
           {SINGLE_PLACE_PAGE.title_comments_section}
         </h1>
@@ -142,6 +134,21 @@ const SinglePlace = () => {
             <span>{SINGLE_PLACE_PAGE.text_button_comments_section}</span>
           </button>
         </form>
+        <div className="single-place-comments">
+          {post?.Comment.map((comment, index) => (
+            <Comments
+              key={index}
+              username={comment.User.username}
+              text={comment.text}
+            />
+          ))}
+          <Pagination
+            style={{ background: "white", borderRadius: "15px" }}
+            color="standard"
+            count={999}
+            onChange={(e, page) => console.log(page)}
+          />
+        </div>
       </div>
     </>
   );
