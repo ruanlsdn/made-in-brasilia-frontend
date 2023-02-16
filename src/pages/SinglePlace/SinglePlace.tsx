@@ -1,74 +1,65 @@
 import { Pagination } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import dummy_bar from "../../assets/dummy_bar.jpg";
 import { Comments, Navbar } from "../../components";
 import { SINGLE_PLACE_PAGE } from "../../constants/static-texts";
 import { iCreateCommentDto } from "../../interfaces/iCreateCommentDto";
-import { iSinglePost } from "../../interfaces/iSinglePost";
+import { iPost } from "../../interfaces/iPost";
 import {
   createCommentRequest,
-  findUniquePostRequest,
+  listAllCommentsRequest,
 } from "../../services/api";
 import "./single-place.css";
 
-type CommentsData = {
-  username: string;
-  text: string;
-};
-
-const COMMENTS_DATA: CommentsData[] = [
-  {
-    username: "Lorem Ipsum",
-    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur facere ipsa temporibus.",
-  },
-  {
-    username: "Lorem Ipsum",
-    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur facere ipsa temporibus.",
-  },
-  {
-    username: "Lorem Ipsum",
-    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur facere ipsa temporibus.",
-  },
-];
-
 // 2aa942ef-7b0d-410e-baf9-fb5afc065b0c
 const SinglePlace = () => {
-  const [post, setPost] = useState<iSinglePost | null>(null);
+  const { state } = useLocation();
+  const post: iPost = state.place;
   const [comment, setComment] = useState<string>("");
-  const { placeId } = useParams();
-  const [refreshPostData, setRefreshData] = useState(false);
+  const [refreshComments, setRefreshComments] = useState(false);
+  const [comments, setComments] = useState([]);
+
+  const handlePaginationChange = async (page: number) => {
+    try {
+      const response = await listAllCommentsRequest(page - 1, post.id);
+      setComments(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const dto: iCreateCommentDto = {
         text: comment,
-        postId: placeId,
+        postId: post.id,
         userId: "2aa942ef-7b0d-410e-baf9-fb5afc065b0c",
       };
       const response = await createCommentRequest(dto);
-      setRefreshData((prev) => !prev);
+      setRefreshComments((prev) => !prev);
     } catch (error) {
       console.log(error);
     }
     setComment("");
   };
 
-  const fetchPost = async () => {
+  const fetchComments = async () => {
     try {
-      const response = await findUniquePostRequest(placeId);
-      setPost(response.data);
+      const response = await listAllCommentsRequest(0, post.id);
+      console.log(response.data);
+      setComments(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchPost();
-  }, [refreshPostData]);
+    fetchComments();
+  }, [refreshComments]);
 
   return (
     <>
@@ -96,8 +87,7 @@ const SinglePlace = () => {
         </div>
         <div className="single-place-carousel-description">
           <div className="single-place-carousel-description-texts">
-            <h1>Lorem Ipsum</h1>
-            <p>Lorem ipsum dolor</p>
+            <p>Categoria</p>
           </div>
           <div className="single-place-carousel-description-texts">
             <p>{`${post?.openDay} - ${post?.closeDay}`}</p>
@@ -135,18 +125,14 @@ const SinglePlace = () => {
           </button>
         </form>
         <div className="single-place-comments">
-          {post?.Comment.map((comment, index) => (
-            <Comments
-              key={index}
-              username={comment.User.username}
-              text={comment.text}
-            />
+          {comments.map((comment, index) => (
+            <Comments key={index} comment={comment} />
           ))}
           <Pagination
             style={{ background: "white", borderRadius: "15px" }}
             color="standard"
             count={999}
-            onChange={(e, page) => console.log(page)}
+            onChange={(e, page) => handlePaginationChange(page)}
           />
         </div>
       </div>

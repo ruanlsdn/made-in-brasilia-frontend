@@ -1,21 +1,22 @@
-import React from "react";
-import { FiThumbsDown, FiThumbsUp } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
+import { iComment } from "../../interfaces/iComment";
 import "./comments.css";
 
 type CommentsProps = {
-  username: string;
-  text: string;
+  comment: iComment;
 };
 
-const Comments = ({ username, text }: CommentsProps) => {
+const Comments = ({ comment }: CommentsProps) => {
   return (
     <div className="comments-content">
       <div className="comments-content-user-information">
         <FaUserCircle size={50} color="white" />
         <div className="comments-content-user-texts">
-          <h3>{username}</h3>
-          <p>{text}</p>
+          <h3>
+            {comment.User.username}
+            <span>- {new Date(comment.createdAt).toLocaleString()}</span>
+          </h3>
+          <p>{comment.text}</p>
         </div>
       </div>
       {/* <div className="comments-content-thumbs">

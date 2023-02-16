@@ -69,6 +69,11 @@
     justify-content: center;
     padding: 2rem 2rem;
   }
+
+  .cities-card-texts h1,
+  p {
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 480px) {
