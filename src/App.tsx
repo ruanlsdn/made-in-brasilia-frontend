@@ -10,8 +10,8 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path={"cities"} element={<Cities />} />
-        <Route path={"places"} element={<Places />} />
-        <Route path={"single-place"} element={<SinglePlace />} />
+        <Route path={"places/:cityId"} element={<Places />} />
+        <Route path={"single-place/:placeId"} element={<SinglePlace />} />
       </Routes>
     </div>
   );

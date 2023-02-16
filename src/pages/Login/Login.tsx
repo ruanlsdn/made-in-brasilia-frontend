@@ -43,7 +43,7 @@ const Login = () => {
         <img className="login-image" src={image} alt="image" />
       </div>
       <div className="login-form-container">
-        <h1>Bem-vindo de volta!</h1>
+        <h1>Bem-vindo de volta</h1>
         <p>Preencha o formulário abaixo para entrar</p>
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="login-form-input-container">

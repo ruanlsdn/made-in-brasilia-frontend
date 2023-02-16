@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import dummy_bsb from "../../assets/dummy_bsb.jpg";
+import { useDataControlContext } from "../../contexts/DataControlContext";
 import { iCity } from "../../interfaces/iCity";
-import { listAllCityImagesRequest } from "../../services/api";
 import "./cities-card.css";
 
 type CityDataProps = {
@@ -38,7 +37,7 @@ const CitiesCard = ({ index, city }: CityDataProps) => {
       <div className="cities-card-texts">
         <h1>{city.title}</h1>
         <p>{city.text}</p>
-        <Link state={{ cityId: city.id }} to={"/places"}>
+        <Link to={`/places/${city.id}`}>
           <button className="cities-card-link gradient-bg-colorful">
             <span> Visite!</span>
           </button>

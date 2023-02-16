@@ -7,11 +7,11 @@ import "./places.css";
 
 const Places = () => {
   const { filteredPosts, setPosts, setFilteredPosts } = useDataControlContext();
-  const { state } = useLocation();
+  const { cityId } = useParams();
 
   const fetchPosts = async () => {
     try {
-      const response = await listAllPostRequest(state.cityId);
+      const response = await listAllPostRequest(cityId);
       setPosts(response.data);
       setFilteredPosts(response.data);
     } catch (error) {

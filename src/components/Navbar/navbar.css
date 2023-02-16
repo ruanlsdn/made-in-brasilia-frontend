@@ -30,6 +30,10 @@
 
 .navbar-links-item {
   text-decoration: none;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  background-color: unset;
 }
 
 .navbar-links-item :hover {

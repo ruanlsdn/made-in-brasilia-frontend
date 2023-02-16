@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FiMenu, FiMessageSquare, FiSun, FiUser } from "react-icons/fi";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useParams, useNavigate } from "react-router-dom";
 import { ToggleMenu } from "..";
 import "./navbar.css";
 
@@ -8,6 +8,7 @@ const Navbar = () => {
   const isLoggedIn: boolean = true;
   const { pathname } = useLocation();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -16,9 +17,12 @@ const Navbar = () => {
         {isLoggedIn && pathname.includes("single-place") && (
           <>
             <div className="navbar-links">
-              <NavLink className="navbar-links-item" to={"/places"}>
+              <button
+                className="navbar-links-item "
+                onClick={() => navigate(-1)}
+              >
                 <span>LUGARES</span>
-              </NavLink>
+              </button>
             </div>
             <div className="navbar-options">
               <button>
@@ -33,9 +37,12 @@ const Navbar = () => {
         {isLoggedIn && pathname.includes("/place") && (
           <>
             <div className="navbar-links">
-              <NavLink className="navbar-links-item" to={"/cities"}>
+              <button
+                className="navbar-links-item "
+                onClick={() => navigate(-1)}
+              >
                 <span>CIDADES</span>
-              </NavLink>
+              </button>
             </div>
             <div className="navbar-options">
               <button>

@@ -16,7 +16,7 @@ const PlacesCard = ({ place }: PlacesCardProps) => {
         <h1>{place.name}</h1>
         <p>{place.text}</p>
         <Rating readonly initialValue={5} />
-        <Link state={{ place: place }} to={"/single-place"}>
+        <Link state={{ place: place }} to={`/single-place/${place.id}`}>
           <button className="gradient-bg-colorful">
             <span>Saiba mais</span>
           </button>

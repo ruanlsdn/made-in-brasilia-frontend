@@ -50,7 +50,6 @@ const SinglePlace = () => {
   const fetchComments = async () => {
     try {
       const response = await listAllCommentsRequest(0, post.id);
-      console.log(response.data);
       setComments(response.data);
     } catch (error) {
       console.log(error);
