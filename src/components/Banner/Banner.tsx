@@ -5,7 +5,7 @@ import "./banner.css";
 
 const Banner = () => {
   return (
-    <div className="banner">
+    <div className="banner ">
       <div className="banner-content">
         <div className="banner-content-texts">
           <h1 className="gradient-text">{HOME_PAGE.title_header}</h1>

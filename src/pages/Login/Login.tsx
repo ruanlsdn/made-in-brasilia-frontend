@@ -44,10 +44,10 @@ const Login = () => {
       <div className="login-image-container">
         <img className="login-image" src={image} alt="image" />
       </div>
-      <div className="login-form-container gradient-bg">
+      <div className="login-form-container gradient-bg ">
         <h1>Bem-vindo de volta</h1>
         <p>Preencha o formulário abaixo para entrar</p>
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="login-form " onSubmit={handleSubmit}>
           <div className="login-form-input-container">
             <TextField
               className="login-form-input"

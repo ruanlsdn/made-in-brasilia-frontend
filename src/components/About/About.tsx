@@ -33,7 +33,7 @@ const ABOUT_DATA: AboutData[] = [
 
 const About = () => {
   return (
-    <div className="about" id="features">
+    <div className="about " id="features">
       <div className="about-content">
         <div className="about-content-title">
           <h1 className="gradient-text">{HOME_PAGE.title_body}</h1>

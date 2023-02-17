@@ -12,10 +12,10 @@ import { iPost } from "../../interfaces/iPost";
 import {
   createCommentRequest,
   listAllCommentsRequest,
+  listAllPostImagesRequest,
 } from "../../services/api";
 import "./single-place.css";
 
-// 2aa942ef-7b0d-410e-baf9-fb5afc065b0c
 const SinglePlace = () => {
   const { state } = useLocation();
   const post: iPost = state.place;
@@ -23,6 +23,19 @@ const SinglePlace = () => {
   const [refreshComments, setRefreshComments] = useState(false);
   const [comments, setComments] = useState([]);
   const { user } = useAuthControlContext();
+  const [image, setImage] = useState<string[]>([]);
+
+  const fetchImages = async () => {
+    try {
+      const response = await listAllPostImagesRequest(post.id);
+      const base64Array = response.data.map(
+        (image) => `data:image/jpeg;base64,${image}`
+      );
+      setImage(base64Array);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handlePaginationChange = async (page: number) => {
     try {
@@ -59,6 +72,10 @@ const SinglePlace = () => {
   };
 
   useEffect(() => {
+    fetchImages();
+  }, []);
+
+  useEffect(() => {
     fetchComments();
   }, [refreshComments]);
 
@@ -67,7 +84,7 @@ const SinglePlace = () => {
       <div className="gradient-bg">
         <Navbar />
       </div>
-      <div className="single-place-content">
+      <div className="single-place-content scale-up-hor-center">
         <div className="single-place-carousel">
           <Carousel
             axis="horizontal"
@@ -75,15 +92,11 @@ const SinglePlace = () => {
             showThumbs={false}
             infiniteLoop
           >
-            <div>
-              <img className="carousel-img" src={dummy_bar} />
-            </div>
-            <div>
-              <img className="carousel-img" src={dummy_bar} />
-            </div>
-            <div>
-              <img className="carousel-img" src={dummy_bar} />
-            </div>
+            {image.map((img, index) => (
+              <div key={index}>
+                <img className="carousel-img" src={img} />
+              </div>
+            ))}
           </Carousel>
         </div>
         <div className="single-place-carousel-description">

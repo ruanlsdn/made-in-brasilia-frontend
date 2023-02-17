@@ -1,7 +1,9 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import dummy_bsb from "../../assets/dummy_bsb.jpg";
 import { useDataControlContext } from "../../contexts/DataControlContext";
 import { iCity } from "../../interfaces/iCity";
+import { listAllCityImagesRequest } from "../../services/api";
 import "./cities-card.css";
 
 type CityDataProps = {
@@ -10,30 +12,29 @@ type CityDataProps = {
 };
 
 const CitiesCard = ({ index, city }: CityDataProps) => {
-  // const [image, setImage] = useState();
-  // const fetchImages = async () => {
-  //   try {
-  //     const response = await listAllCityImagesRequest();
-  //     const buffer = response.data[0].content.data;
-  //     const blob = new Blob(buffer, { type: "image/jpeg" });
-  //     const url = URL.createObjectURL(blob);
-  //     setImage(url);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const [image, setImage] = useState<string>("");
 
-  // useEffect(() => {
-  //   fetchImages();
-  // }, []);
+  const fetchImages = async () => {
+    try {
+      const response = await listAllCityImagesRequest(city.id);
+      const base64 = `data:image/jpeg;base64,${response.data[0]}`;
+      setImage(base64);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchImages();
+  }, []);
 
   return (
     <div
-      className={`cities-card-container  ${
-        index % 2 === 0 ? "" : "cities-card-container-reverse"
+      className={`cities-card-container scale-up-center  ${
+        index % 2 === 0 ? "" : "cities-card-container-reverse scale-up-center"
       }`}
     >
-      <img src={dummy_bsb} alt="dummy_bsb" />
+      <img src={image} alt="image" />
       <div className="cities-card-texts">
         <h1>{city.title}</h1>
         <p>{city.text}</p>

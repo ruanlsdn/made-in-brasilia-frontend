@@ -26,14 +26,18 @@ export const listAllCityRequest = async () => {
   return await api.get("/city");
 };
 
-export const listAllCityImagesRequest = async () => {
-  return await api.get("/city/images/list");
+export const listAllCityImagesRequest = async (cityId: string) => {
+  return await api.get(`/city/images/list/${cityId}`);
 };
 // END OF CITY REQUEST
 
 // POST REQUEST
 export const listAllPostRequest = async (cityId: string) => {
   return await api.get(`/post?cityId=${cityId}`);
+};
+
+export const listAllPostImagesRequest = async (postId: string) => {
+  return await api.get(`/post/images/list/${postId}`);
 };
 
 export const findUniquePostRequest = async (postId: string) => {

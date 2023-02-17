@@ -39,7 +39,7 @@ const Alphabet = () => {
   };
 
   return (
-    <div className="alphabet">
+    <div className="alphabet scale-up-hor-center">
       <button
         className="gradient-text"
         onClick={() => {
