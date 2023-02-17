@@ -46,6 +46,7 @@ export const AuthControlProvider = ({ children }: ChildrenProps) => {
   };
 
   const signOut = () => {
+    setUser(null);
     localStorage.removeItem("user");
   };
 

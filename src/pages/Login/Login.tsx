@@ -7,7 +7,6 @@ import bsb_2 from "../../assets/bsb_2.jpg";
 import bsb_3 from "../../assets/bsb_3.jpg";
 import { useAuthControlContext } from "../../contexts/AuthControlContext";
 import { iLoginDto } from "../../interfaces/iLoginDto";
-import { loginRequest } from "../../services/api";
 import "./login.css";
 
 const Login = () => {
@@ -37,7 +36,7 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="login-container">
+    <div className="login-container ">
       <div className="login-icons">
         <FiSun size={30} />
         <h3>Made in Brasília</h3>
@@ -45,7 +44,7 @@ const Login = () => {
       <div className="login-image-container">
         <img className="login-image" src={image} alt="image" />
       </div>
-      <div className="login-form-container">
+      <div className="login-form-container gradient-bg">
         <h1>Bem-vindo de volta</h1>
         <p>Preencha o formulário abaixo para entrar</p>
         <form className="login-form" onSubmit={handleSubmit}>
@@ -53,8 +52,7 @@ const Login = () => {
             <TextField
               className="login-form-input"
               id="username"
-              label="Usuário"
-              variant="outlined"
+              placeholder="Usuário"
               onChange={(e) => setNewUsername(e.target.value)}
               required
             />
@@ -62,14 +60,13 @@ const Login = () => {
               className="login-form-input"
               type={"password"}
               id="password"
-              label="Senha"
-              variant="outlined"
+              placeholder="Senha"
               onChange={(e) => setNewPassword(e.target.value)}
               required
             />
             <a href="">Esqueci a senha</a>
           </div>
-          <button type="submit">
+          <button className="gradient-bg-colorful" type="submit">
             <span>Entrar</span>
           </button>
         </form>

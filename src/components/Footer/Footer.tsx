@@ -62,7 +62,7 @@ const FOOTER_LINKS: FooterLinks[] = [
 
 const Footer = () => {
   return (
-    <div className="footer" id="footer">
+    <div className="footer gradient-bg" id="footer">
       <FiSun size={50} color={"white"} />
       <div className="footer-content">
         {FOOTER_LINKS.map((item, index) => (

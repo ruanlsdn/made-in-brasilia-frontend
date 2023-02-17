@@ -46,7 +46,7 @@ const Register = () => {
       <div className="register-image-container">
         <img className="register-image" src={image} alt="image" />
       </div>
-      <div className="register-form-container">
+      <div className="register-form-container gradient-bg">
         <h1>Crie sua conta</h1>
         <p>Preencha o formulário abaixo para se cadastrar</p>
         <form className="register-form" onSubmit={handleSubmit}>
@@ -78,7 +78,7 @@ const Register = () => {
               required
             />
           </div>
-          <button type="submit">
+          <button className="gradient-bg-colorful" type="submit">
             <span>Cadastrar</span>
           </button>
         </form>
