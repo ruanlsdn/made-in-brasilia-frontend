@@ -3,6 +3,11 @@ type iPostStatus = {
   description: string;
 };
 
+type iPostCategory = {
+  id: number;
+  description: string;
+};
+
 export interface iPost {
   id: string;
   name: string;
@@ -12,4 +17,5 @@ export interface iPost {
   openTime: string;
   closeTime: string;
   PostStatus: iPostStatus;
+  PostCategory: iPostCategory;
 }

@@ -29,7 +29,7 @@ const PlacesCard = ({ place }: PlacesCardProps) => {
 
   return (
     <div className="places-card-container places-card-container-hover scale-up-center">
-      <img src={image} alt="image" />
+      <img style={{ objectFit: "cover" }} src={image} alt="image" />
       <div className="places-card-content">
         <h1>{place.name}</h1>
         <p>{place.text}</p>

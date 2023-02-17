@@ -17,7 +17,7 @@ const CitiesCard = ({ index, city }: CityDataProps) => {
   const fetchImages = async () => {
     try {
       const response = await listAllCityImagesRequest(city.id);
-      const base64 = `data:image/jpeg;base64,${response.data[0]}`;
+      const base64 = `data:image/jpeg;base64,${response.data}`;
       setImage(base64);
     } catch (error) {
       console.log(error);

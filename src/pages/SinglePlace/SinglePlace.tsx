@@ -94,14 +94,18 @@ const SinglePlace = () => {
           >
             {image.map((img, index) => (
               <div key={index}>
-                <img className="carousel-img" src={img} />
+                <img
+                  style={{ objectFit: "fill" }}
+                  className="carousel-img"
+                  src={img}
+                />
               </div>
             ))}
           </Carousel>
         </div>
         <div className="single-place-carousel-description">
           <div className="single-place-carousel-description-texts">
-            <p>Categoria</p>
+            <p>{post.PostCategory.description}</p>
           </div>
           <div className="single-place-carousel-description-texts">
             <p>{`${post?.openDay} - ${post?.closeDay}`}</p>
