@@ -55,16 +55,14 @@ const Register = () => {
               className="register-form-input"
               type={"email"}
               id="email"
-              label="Email"
-              variant="outlined"
+              placeholder="Email"
               onChange={(e) => setNewEmail(e.target.value)}
               required
             />
             <TextField
               className="register-form-input"
               id="username"
-              label="Usuário"
-              variant="outlined"
+              placeholder="Usuário"
               onChange={(e) => setNewUsername(e.target.value)}
               required
             />
@@ -72,8 +70,7 @@ const Register = () => {
               className="register-form-input"
               type={"password"}
               id="password"
-              label="Senha"
-              variant="outlined"
+              placeholder="Senha"
               onChange={(e) => setNewPassword(e.target.value)}
               required
             />
