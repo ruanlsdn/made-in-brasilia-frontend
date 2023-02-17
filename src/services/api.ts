@@ -15,6 +15,10 @@ export const loginRequest = async (dto: iLoginDto) => {
 export const createUserRequest = async (dto: iCreateUserDto) => {
   return await api.post("/user", dto);
 };
+
+export const findUniqueUserRequest = async (id: string) => {
+  return await api.get(`/user/${id}`);
+};
 // END OF USER REQUEST
 
 // CITY REQUEST

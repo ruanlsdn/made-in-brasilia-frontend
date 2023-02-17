@@ -1,9 +1,11 @@
 import { TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { FiSun } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 import bsb_1 from "../../assets/bsb_1.jpg";
 import bsb_2 from "../../assets/bsb_2.jpg";
 import bsb_3 from "../../assets/bsb_3.jpg";
+import { useAuthControlContext } from "../../contexts/AuthControlContext";
 import { iLoginDto } from "../../interfaces/iLoginDto";
 import { loginRequest } from "../../services/api";
 import "./login.css";
@@ -12,19 +14,20 @@ const Login = () => {
   const [image, setImage] = useState("");
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const navigate = useNavigate();
+  const { signIn } = useAuthControlContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const dto: iLoginDto = {
-        username: newUsername,
-        password: newPassword,
-      };
-      const response = await loginRequest(dto);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+
+    const dto: iLoginDto = {
+      username: newUsername,
+      password: newPassword,
+    };
+
+    const response = await signIn(dto);
+
+    if (response) navigate("/cities");
   };
 
   useEffect(() => {

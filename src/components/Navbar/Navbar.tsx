@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { FiMenu, FiMessageSquare, FiSun, FiUser } from "react-icons/fi";
-import { NavLink, useLocation, useParams, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ToggleMenu } from "..";
+import { useAuthControlContext } from "../../contexts/AuthControlContext";
 import "./navbar.css";
 
 const Navbar = () => {
-  const isLoggedIn: boolean = true;
+  const { user, signOut } = useAuthControlContext();
   const { pathname } = useLocation();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Navbar = () => {
     <>
       <div className="navbar-container" id="header">
         <FiSun className="logo" size={35} color={"white"} />
-        {isLoggedIn && pathname.includes("single-place") && (
+        {user && pathname.includes("single-place") && (
           <>
             <div className="navbar-links">
               <button
@@ -28,13 +29,18 @@ const Navbar = () => {
               <button>
                 <FiMessageSquare size={30} />
               </button>
-              <button>
+              <button
+                onClick={() => {
+                  signOut();
+                  navigate("/");
+                }}
+              >
                 <FiUser size={30} />
               </button>
             </div>
           </>
         )}
-        {isLoggedIn && pathname.includes("/place") && (
+        {user && pathname.includes("/place") && (
           <>
             <div className="navbar-links">
               <button
@@ -48,13 +54,18 @@ const Navbar = () => {
               <button>
                 <FiMessageSquare size={30} />
               </button>
-              <button>
+              <button
+                onClick={() => {
+                  signOut();
+                  navigate("/");
+                }}
+              >
                 <FiUser size={30} />
               </button>
             </div>
           </>
         )}
-        {isLoggedIn && pathname.includes("/cities") && (
+        {user && pathname.includes("/cities") && (
           <>
             <div className="navbar-title">
               <h3 className="navbar-links-item">BRASÍLIA DE A-Z</h3>
@@ -63,13 +74,18 @@ const Navbar = () => {
               <button>
                 <FiMessageSquare size={30} />
               </button>
-              <button>
+              <button
+                onClick={() => {
+                  signOut();
+                  navigate("/");
+                }}
+              >
                 <FiUser size={30} />
               </button>
             </div>
           </>
         )}
-        {!isLoggedIn && (
+        {!user && (
           <>
             <div className="navbar-links" style={{ cursor: "pointer" }}>
               <a className="navbar-links-item" href="#header">
@@ -82,9 +98,12 @@ const Navbar = () => {
                 <span>FOOTER</span>
               </a>
             </div>
-            <a className="navbar-links navbar-links-item" href="">
+            <button
+              className="navbar-links navbar-links-item"
+              onClick={() => navigate("/login")}
+            >
               <span>LOGIN</span>
-            </a>
+            </button>
             <button
               className="navbar-menu-icon"
               onClick={() => setToggleMenu(!toggleMenu)}

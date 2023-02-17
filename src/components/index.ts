@@ -7,3 +7,4 @@ export { default as Alphabet } from "./Alphabet/Alphabet";
 export { default as PlacesCard } from "./PlacesCard/PlacesCard";
 export { default as Comments } from "./Comments/Comments";
 export { default as ToggleMenu } from "./ToggleMenu/ToggleMenu";
+export { default as ProtectedLayout } from "./ProtectedLayout/ProtectedLayout";

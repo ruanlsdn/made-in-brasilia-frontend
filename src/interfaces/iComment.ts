@@ -1,4 +1,4 @@
-import { User } from "./iUser";
+import { iUser } from "./iUser";
 
 export interface iComment {
   id: string;
@@ -8,5 +8,5 @@ export interface iComment {
   postId: string;
   userId: string;
   Answer: any[];
-  User: User;
+  User: iUser;
 }

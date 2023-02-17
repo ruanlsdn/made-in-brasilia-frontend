@@ -6,6 +6,7 @@ import { Rating } from "react-simple-star-rating";
 import dummy_bar from "../../assets/dummy_bar.jpg";
 import { Comments, Navbar } from "../../components";
 import { SINGLE_PLACE_PAGE } from "../../constants/static-texts";
+import { useAuthControlContext } from "../../contexts/AuthControlContext";
 import { iCreateCommentDto } from "../../interfaces/iCreateCommentDto";
 import { iPost } from "../../interfaces/iPost";
 import {
@@ -21,6 +22,7 @@ const SinglePlace = () => {
   const [comment, setComment] = useState<string>("");
   const [refreshComments, setRefreshComments] = useState(false);
   const [comments, setComments] = useState([]);
+  const { user } = useAuthControlContext();
 
   const handlePaginationChange = async (page: number) => {
     try {
@@ -37,7 +39,7 @@ const SinglePlace = () => {
       const dto: iCreateCommentDto = {
         text: comment,
         postId: post.id,
-        userId: "2aa942ef-7b0d-410e-baf9-fb5afc065b0c",
+        userId: user?.id!,
       };
       const response = await createCommentRequest(dto);
       setRefreshComments((prev) => !prev);

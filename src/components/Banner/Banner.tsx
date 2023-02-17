@@ -11,7 +11,7 @@ const Banner = () => {
           <h1 className="gradient-text">{HOME_PAGE.title_header}</h1>
           <p>{HOME_PAGE.description_header}</p>
           <div className="banner-content-get-started">
-            <Link to={"/cities"}>
+            <Link to={"/register"}>
               <button className="gradient-bg-colorful">
                 <span>{HOME_PAGE.text_button_header}</span>
               </button>
