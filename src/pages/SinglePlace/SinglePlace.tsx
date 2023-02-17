@@ -119,6 +119,7 @@ const SinglePlace = () => {
           <textarea
             maxLength={100}
             placeholder={SINGLE_PLACE_PAGE.placeholder_text_comments_section}
+            value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
           <button type="submit" className="gradient-bg-colorful">
