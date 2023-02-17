@@ -58,6 +58,7 @@ p {
   height: 40px;
   border: none;
   transition: transform 0.3s ease-in-out;
+  border-radius: 50px;
 }
 
 .places-card-content button:hover {

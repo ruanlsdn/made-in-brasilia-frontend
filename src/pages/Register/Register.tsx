@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { FiSun } from "react-icons/fi";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import bsb_1 from "../../assets/bsb_1.jpg";
 import bsb_2 from "../../assets/bsb_2.jpg";
 import bsb_3 from "../../assets/bsb_3.jpg";

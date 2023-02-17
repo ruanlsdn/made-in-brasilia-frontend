@@ -106,3 +106,15 @@ p {
   text-decoration: solid;
   color: var(--secondary-color);
 }
+
+@media screen and (max-width: 1200px) {
+  .login-image-container {
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .login-image-container {
+    flex: 0;
+  }
+}

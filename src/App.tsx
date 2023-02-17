@@ -1,12 +1,21 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { ProtectedLayout } from "./components";
-import { Cities, Home, Login, Places, Register, SinglePlace } from "./pages";
+import {
+  Cities,
+  Error,
+  Home,
+  Login,
+  Places,
+  Register,
+  SinglePlace,
+} from "./pages";
 
 function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path={"*"} element={<Error />} />
         <Route path={"/"} element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />

@@ -99,12 +99,14 @@ p {
   text-decoration: none;
   font-family: var(--font-family);
   padding: 10px;
+  border-radius: 15px;
 }
 
 .single-place-rate button {
   width: 200px;
   height: 40px;
   border: none;
+  border-radius: 50px;
   font-family: var(--font-family);
   font-weight: bold;
   transition: transform 0.3s ease-in-out;

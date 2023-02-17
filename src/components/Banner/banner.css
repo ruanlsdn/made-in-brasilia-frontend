@@ -44,6 +44,7 @@
   min-width: 150px;
   flex: 0.1;
   border: none;
+  border-radius: 50px;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
 }
@@ -63,6 +64,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 5rem;
   }
 
   .banner-content {

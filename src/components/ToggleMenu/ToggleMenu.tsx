@@ -31,7 +31,11 @@ const ToggleMenu = ({ setter }: ToggleMenuProps) => {
         <div className="toggle-menu-marker gradient-bg-colorful" />
         <span>FOOTER</span>
       </a>
-      <a className=" navbar-links-item" href="#" onClick={() => setter(false)}>
+      <a
+        className=" navbar-links-item"
+        href="/login"
+        onClick={() => setter(false)}
+      >
         <div className="toggle-menu-marker gradient-bg-colorful" />
         <span>LOGIN</span>
       </a>
