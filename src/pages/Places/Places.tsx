@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Alphabet, Navbar, PlacesCard } from "../../components";
 import { useDataControlContext } from "../../contexts/DataControlContext";
 import { listAllPostRequest } from "../../services/api";

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { FiMenu, FiMessageSquare, FiSun, FiUser } from "react-icons/fi";
+import { FiMenu, FiSun } from "react-icons/fi";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ToggleMenu } from "..";
+import { NavbarLinks, ToggleMenu } from "..";
 import { useAuthControlContext } from "../../contexts/AuthControlContext";
 import "./navbar.css";
 
@@ -15,76 +15,19 @@ const Navbar = () => {
     <>
       <div className="navbar-container" id="header">
         <FiSun className="logo" size={35} color={"white"} />
-        {user && pathname.includes("single-place") && (
-          <>
-            <div className="navbar-links">
-              <button
-                className="navbar-links-item "
-                onClick={() => navigate(-1)}
-              >
-                <span>LUGARES</span>
-              </button>
-            </div>
-            <div className="navbar-options">
-              <button>
-                <FiMessageSquare size={30} />
-              </button>
-              <button
-                onClick={() => {
-                  signOut();
-                  navigate("/");
-                }}
-              >
-                <FiUser size={30} />
-              </button>
-            </div>
-          </>
+        {user && pathname.includes("/cities") && (
+          <NavbarLinks title="BRASÍLIA DE A-Z" isActive={false} />
         )}
         {user && pathname.includes("/place") && (
-          <>
-            <div className="navbar-links">
-              <button
-                className="navbar-links-item "
-                onClick={() => navigate(-1)}
-              >
-                <span>CIDADES</span>
-              </button>
-            </div>
-            <div className="navbar-options">
-              <button>
-                <FiMessageSquare size={30} />
-              </button>
-              <button
-                onClick={() => {
-                  signOut();
-                  navigate("/");
-                }}
-              >
-                <FiUser size={30} />
-              </button>
-            </div>
-          </>
+          <NavbarLinks title="CIDADES" isActive={true} />
         )}
-        {user && pathname.includes("/cities") && (
-          <>
-            <div className="navbar-title">
-              <h3 className="navbar-links-item">BRASÍLIA DE A-Z</h3>
-            </div>
-            <div className="navbar-options">
-              <button>
-                <FiMessageSquare size={30} />
-              </button>
-              <button
-                onClick={() => {
-                  signOut();
-                  navigate("/");
-                }}
-              >
-                <FiUser size={30} />
-              </button>
-            </div>
-          </>
+        {user && pathname.includes("single-place") && (
+          <NavbarLinks title="LUGARES" isActive={true} />
         )}
+        {user && pathname.includes("/chats") && (
+          <NavbarLinks title="VOLTAR" isActive={true} />
+        )}
+
         {!user && (
           <>
             <div className="navbar-links" style={{ cursor: "pointer" }}>

@@ -1,7 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { ProtectedLayout } from "./components";
+import { Navbar, ProtectedLayout } from "./components";
 import {
+  Chats,
   Cities,
   Error,
   Home,
@@ -40,6 +41,14 @@ function App() {
           element={
             <ProtectedLayout>
               <SinglePlace />
+            </ProtectedLayout>
+          }
+        />
+        <Route
+          path={"chats"}
+          element={
+            <ProtectedLayout>
+              <Chats />
             </ProtectedLayout>
           }
         />

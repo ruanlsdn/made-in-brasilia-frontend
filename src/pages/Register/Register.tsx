@@ -38,7 +38,7 @@ const Register = () => {
   }, []);
 
   return (
-    <div className="register-container">
+    <div className="register-container scale-up-hor-center-02">
       <div className="register-icons">
         <FiSun size={30} />
         <h3>Made in Brasília</h3>
