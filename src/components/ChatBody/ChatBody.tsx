@@ -1,14 +1,7 @@
-import {
-  doc,
-  getDoc,
-  onSnapshot,
-  serverTimestamp,
-  updateDoc,
-} from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
+import { useEffect, useRef, useState } from "react";
 import { AiOutlineSend } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
-import { FiUser } from "react-icons/fi";
 import { useAuthControlContext } from "../../contexts/AuthControlContext";
 import { useChatControlContext } from "../../contexts/ChatControlContext";
 import { db } from "../../services/firebase";
@@ -19,6 +12,7 @@ const ChatBody = () => {
     useChatControlContext();
   const [promptText, setPromptText] = useState("");
   const docRef = doc(db, "chats", selectedDocument.id);
+  const messagesEndRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,6 +40,14 @@ const ChatBody = () => {
     return () => unsubscribe();
   }, []);
 
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
   return (
     <>
       <div className="chat-body-header">
@@ -63,6 +65,7 @@ const ChatBody = () => {
             <p>{item?.text}</p>
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
       <form onSubmit={handleSubmit} className="chat-prompt">
         <input
