@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { ApplicationControlProvider } from "./contexts/ApplicationControlContext";
 import { AuthControlProvider } from "./contexts/AuthControlContext";
+import { ChatControlProvider } from "./contexts/ChatControlContext";
 import { DataControlProvider } from "./contexts/DataControlContext";
 import "./index.css";
 
@@ -12,9 +13,11 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <BrowserRouter>
       <AuthControlProvider>
         <ApplicationControlProvider>
-          <DataControlProvider>
-            <App />
-          </DataControlProvider>
+          <ChatControlProvider>
+            <DataControlProvider>
+              <App />
+            </DataControlProvider>
+          </ChatControlProvider>
         </ApplicationControlProvider>
       </AuthControlProvider>
     </BrowserRouter>

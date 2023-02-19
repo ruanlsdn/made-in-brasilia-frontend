@@ -23,14 +23,14 @@ const NavbarLinks = ({ title, isActive }) => {
         <button onClick={() => navigate("/chats")}>
           <FiMessageSquare size={30} />
         </button>
-        <button
+        <a
+          href="/"
           onClick={() => {
             signOut();
-            navigate("/");
           }}
         >
           <FiUser size={30} />
-        </button>
+        </a>
       </div>
     </>
   );

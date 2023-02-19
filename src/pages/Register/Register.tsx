@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 import bsb_1 from "../../assets/bsb_1.jpg";
 import bsb_2 from "../../assets/bsb_2.jpg";
 import bsb_3 from "../../assets/bsb_3.jpg";
+import { db } from "../../services/firebase";
 import { iCreateUserDto } from "../../interfaces/iCreateUserDto";
 import { createUserRequest } from "../../services/api";
 import "./register.css";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const Register = () => {
   const [image, setImage] = useState("");
@@ -24,8 +26,20 @@ const Register = () => {
         username: newUsername,
         password: newPassword,
       };
+
       const response = await createUserRequest(dto);
-      if (response.status == 201) navigate("/login");
+
+      if (response.status == 201) {
+        const usersRef = collection(db, "users");
+        await addDoc(usersRef, {
+          id: response.data.id,
+          username: response.data.username,
+          email: response.data.email,
+          createdAt: serverTimestamp(),
+        });
+
+        navigate("/login");
+      }
     } catch (error) {
       console.log(error);
     }

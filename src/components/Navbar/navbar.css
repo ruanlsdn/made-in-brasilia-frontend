@@ -45,14 +45,16 @@
   gap: 2rem;
 }
 
-.navbar-options button {
+.navbar-options button,
+a {
   color: var(--text-color);
   border: none;
   cursor: pointer;
   background-color: unset;
 }
 
-.navbar-options button:hover {
+.navbar-options button:hover,
+a:hover {
   color: var(--secondary-color);
 }
 
