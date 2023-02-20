@@ -11,8 +11,8 @@ const ChatBody = () => {
   const { messages, setMessages, selectedDocument, selectedUser } =
     useChatControlContext();
   const [promptText, setPromptText] = useState("");
-  const docRef = doc(db, "chats", selectedDocument.id);
   const messagesEndRef = useRef(null);
+  const docRef = doc(db, "chats", selectedDocument.id);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,15 +31,6 @@ const ChatBody = () => {
     }
   };
 
-  useEffect(() => {
-    const unsubscribe = onSnapshot(docRef, (chatSnapshot) => {
-      const messages = chatSnapshot.data().messages;
-      setMessages(messages);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -47,6 +38,15 @@ const ChatBody = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(docRef, (chatSnapshot) => {
+      const messages = chatSnapshot.data().messages;
+      setMessages(messages);
+    });
+
+    return () => unsubscribe();
+  }, [docRef]);
 
   return (
     <>

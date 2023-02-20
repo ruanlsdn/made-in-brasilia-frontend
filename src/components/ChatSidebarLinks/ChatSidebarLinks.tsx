@@ -32,14 +32,15 @@ const ChatSidebarLinks = () => {
       });
 
       if (matchingDocs.length === 0) {
-        await addDoc(chatsRef, {
+        const ref = await addDoc(chatsRef, {
           users: [user?.id, selectedUser.id],
           messages: [],
           createdAt: serverTimestamp(),
         });
+        setSelectedDocument(ref);
       } else {
-        querySnapshot.forEach((doc) => {
-          setSelectedDocument(doc);
+        matchingDocs.forEach((doc) => {
+          setSelectedDocument(doc.ref);
           setMessages(doc.data().messages);
           setShowBody(true);
         });
