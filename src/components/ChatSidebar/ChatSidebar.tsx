@@ -28,7 +28,8 @@ const chats = [
 const ChatSidebar = () => {
   const [searchInput, setSearchInput] = useState("");
   const { user } = useAuthControlContext();
-  const { selectedUser, setSelectedUser } = useChatControlContext();
+  // const { selectedUser, setSelectedUser } = useChatControlContext();
+  const [searchUser, setSearchUser] = useState(null);
   const [chats, setChats] = useState([]);
 
   const handleSearch = async () => {
@@ -37,7 +38,7 @@ const ChatSidebar = () => {
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        setSelectedUser(doc.data());
+        setSearchUser(doc.data());
         setSearchInput("");
       });
     } catch (error) {
@@ -63,9 +64,9 @@ const ChatSidebar = () => {
     }
   };
 
-  // useEffect(() => {
-  //   fetchAvailableChats();
-  // }, []);
+  useEffect(() => {
+    fetchAvailableChats();
+  }, []);
 
   return (
     <div className="chat-available-chats">
@@ -79,9 +80,12 @@ const ChatSidebar = () => {
           <AiOutlineSearch size={30} />
         </button>
       </div>
-      {selectedUser && <ChatSidebarLinks />}
+      {searchUser && <ChatSidebarLinks receiverId={searchUser.id} />}
       {chats.map((chat, index) => (
-        <ChatSidebarLinks key={index} />
+        <ChatSidebarLinks
+          receiverId={chat.users.filter((item) => item != user?.id)[0]}
+          key={index}
+        />
       ))}
     </div>
   );
