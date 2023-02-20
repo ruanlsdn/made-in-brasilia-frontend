@@ -10,16 +10,21 @@ import { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { useAuthControlContext } from "../../contexts/AuthControlContext";
 import { useChatControlContext } from "../../contexts/ChatControlContext";
+import { iFirebaseUser } from "../../interfaces/iFirebaseUser";
 import { db } from "../../services/firebase";
 
-const ChatSidebarLinks = ({ receiverId }) => {
+type ChatSidebarLinksProps = {
+  receiverId: string;
+};
+
+const ChatSidebarLinks = ({ receiverId }: ChatSidebarLinksProps) => {
   const { user } = useAuthControlContext();
-  const { selectedUser, setSelectedUser } = useChatControlContext();
-  const [receiver, setReceiver] = useState(null);
+  const { setSelectedUser } = useChatControlContext();
+  const [receiver, setReceiver] = useState<iFirebaseUser | null>(null);
   const { setMessages, setShowBody, setSelectedDocument } =
     useChatControlContext();
 
-  const handleClick = async () => {
+  const handleClick = async (): Promise<any> => {
     const chatsRef = collection(db, "chats");
     const q = query(chatsRef, where("users", "array-contains", user?.id));
 
@@ -27,12 +32,12 @@ const ChatSidebarLinks = ({ receiverId }) => {
       const querySnapshot = await getDocs(q);
       const matchingDocs = querySnapshot.docs.filter((doc) => {
         const users = doc.data().users;
-        return users.includes(user?.id) && users.includes(receiver.id);
+        return users.includes(user?.id) && users.includes(receiver?.id);
       });
 
       if (matchingDocs.length === 0) {
         await addDoc(chatsRef, {
-          users: [user?.id, receiver.id],
+          users: [user?.id, receiver?.id],
           messages: [],
           createdAt: serverTimestamp(),
         });
@@ -59,7 +64,7 @@ const ChatSidebarLinks = ({ receiverId }) => {
       try {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-          setReceiver(doc.data());
+          setReceiver(doc.data() as iFirebaseUser);
         });
       } catch (error) {
         console.log(error);

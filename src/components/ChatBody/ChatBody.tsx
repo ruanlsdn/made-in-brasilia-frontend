@@ -4,6 +4,7 @@ import { AiOutlineSend } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
 import { useAuthControlContext } from "../../contexts/AuthControlContext";
 import { useChatControlContext } from "../../contexts/ChatControlContext";
+import { iMessage } from "../../interfaces/iMessage";
 import { db } from "../../services/firebase";
 
 const ChatBody = () => {
@@ -11,13 +12,13 @@ const ChatBody = () => {
   const { messages, setMessages, selectedDocument, selectedUser } =
     useChatControlContext();
   const [promptText, setPromptText] = useState("");
-  const messagesEndRef = useRef(null);
-  const docRef = doc(db, "chats", selectedDocument.id);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const docRef = doc(db, "chats", selectedDocument!.id);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const currentMessages = (await getDoc(docRef)).data().messages;
+      const currentMessages = (await getDoc(docRef)).data()?.messages;
       const newMessage = {
         userId: user?.id,
         text: promptText,
@@ -41,7 +42,7 @@ const ChatBody = () => {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(docRef, (chatSnapshot) => {
-      const messages = chatSnapshot.data().messages;
+      const messages: iMessage[] = chatSnapshot.data()?.messages;
       setMessages(messages);
     });
 
@@ -52,7 +53,7 @@ const ChatBody = () => {
     <>
       <div className="chat-body-header">
         <FaUserCircle className="single-chat-icon" size={10} color={"white"} />
-        <h1>{selectedUser.username}</h1>
+        <h1>{selectedUser?.username}</h1>
       </div>
       <div className="chat-body-content gradient-bg">
         {messages.map((item, index) => (

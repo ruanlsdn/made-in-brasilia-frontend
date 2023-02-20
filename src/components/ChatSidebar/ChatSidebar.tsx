@@ -1,36 +1,17 @@
-import { collection, getDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useAuthControlContext } from "../../contexts/AuthControlContext";
-import { useChatControlContext } from "../../contexts/ChatControlContext";
+import { iChat } from "../../interfaces/iChat";
+import { iFirebaseUser } from "../../interfaces/iFirebaseUser";
 import { db } from "../../services/firebase";
 import ChatSidebarLinks from "../ChatSidebarLinks/ChatSidebarLinks";
 
-const chats = [
-  {
-    displayName: "ruanlsdn",
-    lastMessage: "hello",
-  },
-  {
-    displayName: "user1",
-    lastMessage: "hello22",
-  },
-  {
-    displayName: "user2",
-    lastMessage: "hello33",
-  },
-  {
-    displayName: "user3",
-    lastMessage: "hello44",
-  },
-];
-
 const ChatSidebar = () => {
-  const [searchInput, setSearchInput] = useState("");
   const { user } = useAuthControlContext();
-  // const { selectedUser, setSelectedUser } = useChatControlContext();
-  const [searchUser, setSearchUser] = useState(null);
-  const [chats, setChats] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  const [searchUser, setSearchUser] = useState<iFirebaseUser | null>(null);
+  const [chats, setChats] = useState<iChat[]>([]);
 
   const handleSearch = async () => {
     const usersRef = collection(db, "users");
@@ -38,7 +19,7 @@ const ChatSidebar = () => {
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        setSearchUser(doc.data());
+        setSearchUser(doc.data() as iFirebaseUser);
         setSearchInput("");
       });
     } catch (error) {
@@ -53,9 +34,9 @@ const ChatSidebar = () => {
     try {
       const querySnapshot = await getDocs(q);
       if (!querySnapshot.empty) {
-        const chatsArray = [];
+        const chatsArray: iChat[] = [];
         querySnapshot.forEach((doc) => {
-          chatsArray.push(doc.data());
+          chatsArray.push(doc.data() as iChat);
           setChats(chatsArray);
         });
       }
