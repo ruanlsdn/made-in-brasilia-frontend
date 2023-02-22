@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
-import dummy_bar from "../../assets/dummy_bar.jpg";
 import { iPost } from "../../interfaces/iPost";
-import { listAllPostImagesRequest } from "../../services/api";
+import { iPostRatings } from "../../interfaces/iPostRating";
+import {
+  calculatePostRateAvgRequest,
+  listAllPostImagesRequest,
+} from "../../services/api";
 import "./places-card.css";
 
 type PlacesCardProps = {
@@ -12,6 +15,7 @@ type PlacesCardProps = {
 
 const PlacesCard = ({ place }: PlacesCardProps) => {
   const [image, setImage] = useState<string>("");
+  const [rate, setRate] = useState<iPostRatings | null>(null);
 
   const fetchImages = async () => {
     try {
@@ -23,8 +27,18 @@ const PlacesCard = ({ place }: PlacesCardProps) => {
     }
   };
 
+  const fetchRatings = async () => {
+    try {
+      const response = await calculatePostRateAvgRequest(place.id);
+      setRate(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchImages();
+    fetchRatings();
   }, []);
 
   return (
@@ -33,7 +47,11 @@ const PlacesCard = ({ place }: PlacesCardProps) => {
       <div className="places-card-content">
         <h1>{place.name}</h1>
         <p>{place.text}</p>
-        <Rating readonly initialValue={5} />
+        {rate ? (
+          <Rating readonly allowFraction initialValue={rate.avg} />
+        ) : (
+          <Rating readonly initialValue={0} />
+        )}
         <Link state={{ place: place }} to={`/single-place/${place.id}`}>
           <button className="gradient-bg-colorful">
             <span>Saiba mais</span>

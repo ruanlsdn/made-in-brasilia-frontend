@@ -38,7 +38,9 @@ export const HOME_PAGE = {
 };
 
 export const SINGLE_PLACE_PAGE = {
-  title_comments_section: "Ajude novos visitantes!",
+  title_comments_section: "Ajude novos visitantes",
   placeholder_text_comments_section: "Deixe um comentário...",
   text_button_comments_section: "Comentar",
+  title_rating_section: "Avalie",
+  text_button_rating_section: "Confirmar",
 };

@@ -11,7 +11,7 @@ const Places = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await listAllPostRequest(cityId);
+      const response = await listAllPostRequest(cityId!);
       setPosts(response.data);
       setFilteredPosts(response.data);
     } catch (error) {

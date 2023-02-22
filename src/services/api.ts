@@ -1,5 +1,6 @@
 import axios from "axios";
 import { iCreateCommentDto } from "../interfaces/iCreateCommentDto";
+import { iCreatePostRatingDto } from "../interfaces/iCreatePostRatingDto";
 import { iCreateUserDto } from "../interfaces/iCreateUserDto";
 import { iLoginDto } from "../interfaces/iLoginDto";
 
@@ -42,6 +43,18 @@ export const listAllPostImagesRequest = async (postId: string) => {
 
 export const findUniquePostRequest = async (postId: string) => {
   return await api.get(`/post/${postId}`);
+};
+
+export const existsUserVote = async (userId: string) => {
+  return await api.get(`/post-rating/user-already-voted/${userId}`);
+};
+
+export const createPostRatingRequest = async (dto: iCreatePostRatingDto) => {
+  return await api.post("/post-rating", dto);
+};
+
+export const calculatePostRateAvgRequest = async (postId: string) => {
+  return await api.get(`/post-rating/avg/${postId}`);
 };
 // END OF POST REQUEST
 

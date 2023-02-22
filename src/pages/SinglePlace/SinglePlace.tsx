@@ -3,39 +3,35 @@ import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import { useLocation } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
-import dummy_bar from "../../assets/dummy_bar.jpg";
 import { Comments, Navbar } from "../../components";
 import { SINGLE_PLACE_PAGE } from "../../constants/static-texts";
 import { useAuthControlContext } from "../../contexts/AuthControlContext";
 import { iCreateCommentDto } from "../../interfaces/iCreateCommentDto";
+import { iCreatePostRatingDto } from "../../interfaces/iCreatePostRatingDto";
 import { iPost } from "../../interfaces/iPost";
+import { iPostRatings } from "../../interfaces/iPostRating";
 import {
+  calculatePostRateAvgRequest,
   createCommentRequest,
+  createPostRatingRequest,
+  existsUserVote,
   listAllCommentsRequest,
   listAllPostImagesRequest,
 } from "../../services/api";
 import "./single-place.css";
 
 const SinglePlace = () => {
+  const { user } = useAuthControlContext();
   const { state } = useLocation();
   const post: iPost = state.place;
   const [comment, setComment] = useState<string>("");
-  const [refreshComments, setRefreshComments] = useState(false);
   const [comments, setComments] = useState([]);
-  const { user } = useAuthControlContext();
+  const [refreshComments, setRefreshComments] = useState(false);
   const [image, setImage] = useState<string[]>([]);
-
-  const fetchImages = async () => {
-    try {
-      const response = await listAllPostImagesRequest(post.id);
-      const base64Array = response.data.map(
-        (image) => `data:image/jpeg;base64,${image}`
-      );
-      setImage(base64Array);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [rate, setRate] = useState<iPostRatings | null>(null);
+  const [isPostVoted, setIsPostVoted] = useState(false);
+  const [newRate, setNewRate] = useState(0);
+  const [refreshRating, setRefreshRating] = useState(false);
 
   const handlePaginationChange = async (page: number) => {
     try {
@@ -46,7 +42,7 @@ const SinglePlace = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const dto: iCreateCommentDto = {
@@ -62,6 +58,33 @@ const SinglePlace = () => {
     setComment("");
   };
 
+  const handleRatingSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const dto: iCreatePostRatingDto = {
+        rate: newRate,
+        postId: post.id,
+        userId: user?.id!,
+      };
+      const response = await createPostRatingRequest(dto);
+      setRefreshRating((prev) => !prev);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchImages = async () => {
+    try {
+      const response = await listAllPostImagesRequest(post.id);
+      const base64Array = response.data.map(
+        (image: string) => `data:image/jpeg;base64,${image}`
+      );
+      setImage(base64Array);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const fetchComments = async () => {
     try {
       const response = await listAllCommentsRequest(0, post.id);
@@ -71,9 +94,32 @@ const SinglePlace = () => {
     }
   };
 
+  const fetchRating = async () => {
+    try {
+      const response = await calculatePostRateAvgRequest(post.id);
+      setRate(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const canUserVote = async () => {
+    try {
+      const response = await existsUserVote(user!.id);
+      setIsPostVoted(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchImages();
   }, []);
+
+  useEffect(() => {
+    fetchRating();
+    canUserVote();
+  }, [refreshRating]);
 
   useEffect(() => {
     fetchComments();
@@ -114,15 +160,34 @@ const SinglePlace = () => {
             <p>{`${post?.openTime} - ${post?.closeTime}`}</p>
           </div>
           <div className="single-place-carousel-description-texts">
-            <Rating
-              SVGstyle={{
-                height: "30px",
-              }}
-              className="single-place-stars"
-              readonly
-              initialValue={5}
-            />
-            <p>5</p>
+            {rate ? (
+              <>
+                <Rating
+                  SVGstyle={{
+                    height: "30px",
+                  }}
+                  className="single-place-stars"
+                  readonly
+                  initialValue={rate.avg}
+                  allowFraction
+                />
+                <p>{`Nota:  ${rate.avg}`}</p>
+                <p>{`Total de votos: ${rate.count}`}</p>
+              </>
+            ) : (
+              <>
+                <Rating
+                  SVGstyle={{
+                    height: "30px",
+                  }}
+                  className="single-place-stars"
+                  readonly
+                  initialValue={0}
+                />
+                <p>{`Nota:  ${0}`}</p>
+                <p>{`Total de votos: ${0}`}</p>
+              </>
+            )}
           </div>
         </div>
         <div className="single-place-description">
@@ -154,6 +219,27 @@ const SinglePlace = () => {
             onChange={(e, page) => handlePaginationChange(page)}
           />
         </div>
+        {!isPostVoted && (
+          <>
+            <h1 className="single-place-rate-header gradient-text">
+              {SINGLE_PLACE_PAGE.title_rating_section}
+            </h1>
+            <form className="single-place-rate" onSubmit={handleRatingSubmit}>
+              <Rating
+                className="single-place-stars"
+                initialValue={0}
+                onClick={(rate) => setNewRate(rate)}
+              />
+              <button
+                type="submit"
+                className="gradient-bg-colorful"
+                style={{ marginTop: "1rem" }}
+              >
+                <span>{SINGLE_PLACE_PAGE.text_button_rating_section}</span>
+              </button>
+            </form>
+          </>
+        )}
       </div>
     </>
   );

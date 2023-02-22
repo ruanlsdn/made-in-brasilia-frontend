@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { iLoginDto } from "../interfaces/iLoginDto";
 import { iUser } from "../interfaces/iUser";
 import { findUniqueUserRequest, loginRequest } from "../services/api";
@@ -18,13 +19,17 @@ type ChildrenProps = {
 
 export const AuthControlProvider = ({ children }: ChildrenProps) => {
   const [user, setUser] = useState<iUser | null>(null);
+  const navigate = useNavigate();
 
   const validadeUser = async () => {
     const userId = localStorage.getItem("user");
     if (userId) {
       try {
         const response = await findUniqueUserRequest(userId);
-        if (response.status == 200) setUser(response.data);
+        if (response.status == 200) {
+          setUser(response.data);
+          navigate("/cities");
+        }
       } catch (error) {
         console.log(error);
       }
