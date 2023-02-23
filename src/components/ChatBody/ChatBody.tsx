@@ -14,6 +14,7 @@ const ChatBody = () => {
   const [promptText, setPromptText] = useState("");
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const docRef = doc(db, "chats", selectedDocument!.id);
+  const [scroll, setScroll] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,6 +28,7 @@ const ChatBody = () => {
       const updatedMessages = [...currentMessages, newMessage];
       await updateDoc(docRef, { messages: updatedMessages });
       setPromptText("");
+      setScroll((prev) => !prev);
     } catch (error) {
       console.log(error);
     }
@@ -38,7 +40,7 @@ const ChatBody = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [scroll]);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(docRef, (chatSnapshot) => {
@@ -57,16 +59,18 @@ const ChatBody = () => {
       </div>
       <div className="chat-body-content gradient-bg">
         {messages.map((item, index) => (
-          <div
-            key={index}
-            className={`chat-body-message  ${
-              item?.userId != user?.id ? "" : "chat-body-message-reverse"
-            }`}
-          >
-            <p>{item?.text}</p>
-          </div>
+          <>
+            <div
+              key={index}
+              className={`chat-body-message  ${
+                item?.userId != user?.id ? "" : "chat-body-message-reverse"
+              }`}
+            >
+              <p>{item?.text}</p>
+            </div>
+            <div ref={messagesEndRef} />
+          </>
         ))}
-        <div ref={messagesEndRef} />
       </div>
       <form onSubmit={handleSubmit} className="chat-prompt">
         <input
