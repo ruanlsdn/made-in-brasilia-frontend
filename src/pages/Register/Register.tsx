@@ -18,7 +18,7 @@ const Register = () => {
   const [newPassword, setNewPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const dto: iCreateUserDto = {

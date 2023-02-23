@@ -3,7 +3,12 @@ import { FiMessageSquare, FiUser } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useAuthControlContext } from "../../contexts/AuthControlContext";
 
-const NavbarLinks = ({ title, isActive }) => {
+type NavbarLinksProps = {
+  title: string;
+  isActive: boolean;
+};
+
+const NavbarLinks = ({ title, isActive }: NavbarLinksProps) => {
   const { signOut } = useAuthControlContext();
   const navigate = useNavigate();
 

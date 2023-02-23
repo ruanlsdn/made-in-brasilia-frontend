@@ -4,7 +4,9 @@ import { iCreatePostRatingDto } from "../interfaces/iCreatePostRatingDto";
 import { iCreateUserDto } from "../interfaces/iCreateUserDto";
 import { iLoginDto } from "../interfaces/iLoginDto";
 
-const api = axios.create({ baseURL: "http://localhost:3000" });
+const api = axios.create({
+  baseURL: "https://made-in-brasilia-backend-production.up.railway.app",
+});
 
 // LOGIN REQUEST
 export const loginRequest = async (dto: iLoginDto) => {
