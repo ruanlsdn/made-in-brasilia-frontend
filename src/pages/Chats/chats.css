@@ -34,6 +34,12 @@
   background-color: var(--secondary-color);
 }
 
+.chat-available-chats input::placeholder {
+  font-size: 16px;
+  color: var(--text-color);
+  opacity: 50%;
+}
+
 .chat-available-chats button {
   border: none;
   border-radius: 50%;

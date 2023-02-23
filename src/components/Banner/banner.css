@@ -59,7 +59,7 @@
   font-weight: bold;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1366px) {
   .banner {
     display: flex;
     align-items: center;
@@ -74,6 +74,13 @@
     align-items: center;
   }
 
+  .banner-content-get-started {
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 1280px) {
   .banner-content-texts h1 {
     font-size: 46px;
     line-height: 48px;

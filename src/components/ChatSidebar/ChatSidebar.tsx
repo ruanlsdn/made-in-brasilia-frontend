@@ -56,6 +56,7 @@ const ChatSidebar = () => {
           type="text"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
+          placeholder="Pesquisar por um usuário..."
         />
         <button onClick={handleSearch}>
           <AiOutlineSearch size={30} />

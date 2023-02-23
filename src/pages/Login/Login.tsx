@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { FiSun } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bsb_1 from "../../assets/bsb_1.jpg";
 import bsb_2 from "../../assets/bsb_2.jpg";
 import bsb_3 from "../../assets/bsb_3.jpg";
@@ -73,7 +73,7 @@ const Login = () => {
         <div></div>
       </div>
       <div className="login-register">
-        <a href="/register">Registrar-se</a>
+        <Link to={"/register"}>Registrar-se</Link>
       </div>
     </div>
   );
