@@ -5,23 +5,17 @@ import { useAuthControlContext } from "../../contexts/AuthControlContext";
 
 type NavbarLinksProps = {
   title: string;
-  isActive: boolean;
 };
 
-const NavbarLinks = ({ title, isActive }: NavbarLinksProps) => {
+const NavbarLinks = ({ title }: NavbarLinksProps) => {
   const { signOut } = useAuthControlContext();
   const navigate = useNavigate();
 
   return (
     <>
       <div className="navbar-links">
-        <button
-          className="navbar-links-item "
-          onClick={() => {
-            if (isActive) navigate(-1);
-          }}
-        >
-          <span>{title}</span>
+        <button className="navbar-links-item ">
+          <span>{title.toUpperCase()}</span>
         </button>
       </div>
       <div className="navbar-options">

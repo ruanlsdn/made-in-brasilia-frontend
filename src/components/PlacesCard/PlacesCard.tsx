@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
+import { useDataControlContext } from "../../contexts/DataControlContext";
 import { iPost } from "../../interfaces/iPost";
 import { iPostRatings } from "../../interfaces/iPostRating";
 import {
@@ -16,6 +17,7 @@ type PlacesCardProps = {
 const PlacesCard = ({ place }: PlacesCardProps) => {
   const [image, setImage] = useState<string>("");
   const [rate, setRate] = useState<iPostRatings | null>(null);
+  const { setSelectedPost } = useDataControlContext();
 
   const fetchImages = async () => {
     try {
@@ -53,7 +55,10 @@ const PlacesCard = ({ place }: PlacesCardProps) => {
           <Rating readonly initialValue={0} />
         )}
         <Link state={{ place: place }} to={`/single-place/${place.id}`}>
-          <button className="gradient-bg-colorful">
+          <button
+            className="gradient-bg-colorful"
+            onClick={() => setSelectedPost(place)}
+          >
             <span>Saiba mais</span>
           </button>
         </Link>

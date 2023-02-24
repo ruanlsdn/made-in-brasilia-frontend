@@ -1,5 +1,6 @@
 import { Pagination } from "@mui/material";
 import { useEffect, useState } from "react";
+import { FaMapMarkedAlt } from "react-icons/fa";
 import { Carousel } from "react-responsive-carousel";
 import { useLocation } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
@@ -151,6 +152,11 @@ const SinglePlace = () => {
         </div>
         <div className="single-place-carousel-description">
           <div className="single-place-carousel-description-texts">
+            <a href={post?.location} target={"_blank"}>
+              <FaMapMarkedAlt size={80} color={"white"} />
+            </a>
+          </div>
+          <div className="single-place-carousel-description-texts">
             <p>{post.PostCategory.description}</p>
           </div>
           <div className="single-place-carousel-description-texts">
@@ -160,7 +166,7 @@ const SinglePlace = () => {
             <p>{`${post?.openTime} - ${post?.closeTime}`}</p>
           </div>
           <div className="single-place-carousel-description-texts">
-            {rate ? (
+            {rate && rate.avg != null ? (
               <>
                 <Rating
                   SVGstyle={{

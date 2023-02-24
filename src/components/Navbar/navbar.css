@@ -28,6 +28,10 @@
   color: var(--text-color);
 }
 
+.navbar-links-arrow:hover {
+  color: var(--secondary-color);
+}
+
 .navbar-links-item {
   text-decoration: none;
   border: none;

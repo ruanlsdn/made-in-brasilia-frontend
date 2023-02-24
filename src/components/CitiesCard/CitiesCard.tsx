@@ -13,6 +13,7 @@ type CityDataProps = {
 
 const CitiesCard = ({ index, city }: CityDataProps) => {
   const [image, setImage] = useState<string>("");
+  const { setSelectedCity } = useDataControlContext();
 
   const fetchImages = async () => {
     try {
@@ -39,7 +40,10 @@ const CitiesCard = ({ index, city }: CityDataProps) => {
         <h1>{city.title}</h1>
         <p>{city.text}</p>
         <Link to={`/places/${city.id}`}>
-          <button className="cities-card-link gradient-bg-colorful">
+          <button
+            className="cities-card-link gradient-bg-colorful"
+            onClick={() => setSelectedCity(city)}
+          >
             <span> Visite!</span>
           </button>
         </Link>

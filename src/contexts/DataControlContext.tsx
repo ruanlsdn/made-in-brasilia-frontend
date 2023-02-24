@@ -7,22 +7,17 @@ type DataControlContextProps = {
   setCities: React.Dispatch<React.SetStateAction<iCity[]>>;
   filteredCities: iCity[];
   setFilteredCities: React.Dispatch<React.SetStateAction<iCity[]>>;
+  selectedCity: iCity | null;
+  setSelectedCity: React.Dispatch<React.SetStateAction<iCity | null>>;
   posts: iPost[];
   setPosts: React.Dispatch<React.SetStateAction<iPost[]>>;
   filteredPosts: iPost[];
   setFilteredPosts: React.Dispatch<React.SetStateAction<iPost[]>>;
+  selectedPost: iPost | null;
+  setSelectedPost: React.Dispatch<React.SetStateAction<iPost | null>>;
 };
 
-const DataControlContext = createContext<DataControlContextProps>({
-  cities: [],
-  setCities: () => {},
-  filteredCities: [],
-  setFilteredCities: () => {},
-  posts: [],
-  setPosts: () => {},
-  filteredPosts: [],
-  setFilteredPosts: () => {},
-});
+const DataControlContext = createContext<DataControlContextProps>(null!);
 
 type ChildrenProps = {
   children: React.ReactNode;
@@ -31,8 +26,10 @@ type ChildrenProps = {
 export const DataControlProvider = ({ children }: ChildrenProps) => {
   const [cities, setCities] = useState<iCity[]>([]);
   const [filteredCities, setFilteredCities] = useState<iCity[]>([]);
+  const [selectedCity, setSelectedCity] = useState<iCity | null>(null);
   const [posts, setPosts] = useState<iPost[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<iPost[]>([]);
+  const [selectedPost, setSelectedPost] = useState<iPost | null>(null);
 
   return (
     <DataControlContext.Provider
@@ -41,10 +38,14 @@ export const DataControlProvider = ({ children }: ChildrenProps) => {
         setCities,
         filteredCities,
         setFilteredCities,
+        selectedCity,
+        setSelectedCity,
         posts,
         setPosts,
         filteredPosts,
         setFilteredPosts,
+        selectedPost,
+        setSelectedPost,
       }}
     >
       {children}
