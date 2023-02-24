@@ -5,7 +5,7 @@ import { iCreateUserDto } from "../interfaces/iCreateUserDto";
 import { iLoginDto } from "../interfaces/iLoginDto";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "made-in-brasilia-backend-production.up.railway.app",
 });
 
 // LOGIN REQUEST
