@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FiMenu, FiArrowLeft, FiSun, FiChevronLeft } from "react-icons/fi";
+import { FiChevronLeft, FiMenu, FiSun } from "react-icons/fi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NavbarLinks, ToggleMenu } from "..";
 import { useAuthControlContext } from "../../contexts/AuthControlContext";
@@ -38,7 +38,14 @@ const Navbar = () => {
             <NavbarLinks title={selectedPost?.name!} />
           </>
         )}
-        {user && pathname.includes("/chats") && <NavbarLinks title="VOLTAR" />}
+        {user && pathname.includes("/chats") && (
+          <>
+            <button className="navbar-links-item" onClick={() => navigate(-1)}>
+              <FiChevronLeft size={35} color={"white"} />
+            </button>
+            <NavbarLinks title={"CHATS"} />
+          </>
+        )}
 
         {!user && (
           <>

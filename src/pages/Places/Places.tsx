@@ -1,11 +1,15 @@
+import { AxiosError } from "axios";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Alphabet, Navbar, PlacesCard } from "../../components";
+import { Alphabet, Navbar, PlacesCard, Snackbar } from "../../components";
+import { useApplicationControlContext } from "../../contexts/ApplicationControlContext";
 import { useDataControlContext } from "../../contexts/DataControlContext";
 import { listAllPostRequest } from "../../services/api";
 import "./places.css";
 
 const Places = () => {
+  const { setIsSnackbarOpen, setSnackbarMessage, setSnackbarSeverity } =
+    useApplicationControlContext();
   const { filteredPosts, setPosts, setFilteredPosts } = useDataControlContext();
   const { cityId } = useParams();
 
@@ -15,7 +19,12 @@ const Places = () => {
       setPosts(response.data);
       setFilteredPosts(response.data);
     } catch (error) {
-      console.log(error);
+      const axiosError = error as AxiosError;
+      setIsSnackbarOpen(true);
+      setSnackbarMessage(
+        `${axiosError.response?.status} - ${axiosError.response?.statusText}`
+      );
+      setSnackbarSeverity("error");
     }
   };
 
@@ -34,6 +43,7 @@ const Places = () => {
           <PlacesCard key={index} place={place} />
         ))}
       </div>
+      <Snackbar />
     </>
   );
 };

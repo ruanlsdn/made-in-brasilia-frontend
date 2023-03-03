@@ -1,16 +1,18 @@
 import React, { createContext, useContext, useState } from "react";
-import { Location } from "react-router-dom";
 
 type ApplicationControlContextProps = {
-  previousLocation: Location | null;
-  setPreviousLocation: React.Dispatch<React.SetStateAction<Location | null>>;
+  isSnackbarOpen: boolean;
+  setIsSnackbarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  snackbarMessage: string;
+  setSnackbarMessage: React.Dispatch<React.SetStateAction<string>>;
+  snackbarSeverity: "success" | "warning" | "error" | undefined;
+  setSnackbarSeverity: React.Dispatch<
+    React.SetStateAction<"success" | "warning" | "error" | undefined>
+  >;
 };
 
 const ApplicationControlContext = createContext<ApplicationControlContextProps>(
-  {
-    previousLocation: null,
-    setPreviousLocation: () => {},
-  }
+  null!
 );
 
 type ChildrenProps = {
@@ -18,15 +20,21 @@ type ChildrenProps = {
 };
 
 export const ApplicationControlProvider = ({ children }: ChildrenProps) => {
-  const [previousLocation, setPreviousLocation] = useState<Location | null>(
-    null
-  );
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState<
+    "success" | "warning" | "error" | undefined
+  >(undefined);
 
   return (
     <ApplicationControlContext.Provider
       value={{
-        previousLocation,
-        setPreviousLocation,
+        isSnackbarOpen,
+        setIsSnackbarOpen,
+        snackbarMessage,
+        setSnackbarMessage,
+        snackbarSeverity,
+        setSnackbarSeverity,
       }}
     >
       {children}

@@ -1,10 +1,14 @@
+import { AxiosError } from "axios";
 import { useEffect } from "react";
-import { Alphabet, CitiesCard, Navbar } from "../../components";
+import { Alphabet, CitiesCard, Navbar, Snackbar } from "../../components";
+import { useApplicationControlContext } from "../../contexts/ApplicationControlContext";
 import { useDataControlContext } from "../../contexts/DataControlContext";
 import { listAllCityRequest } from "../../services/api";
 import "./cities.css";
 
 const Cities = () => {
+  const { setIsSnackbarOpen, setSnackbarMessage, setSnackbarSeverity } =
+    useApplicationControlContext();
   const { filteredCities, setFilteredCities, setCities } =
     useDataControlContext();
 
@@ -14,7 +18,12 @@ const Cities = () => {
       setCities(response.data);
       setFilteredCities(response.data);
     } catch (error) {
-      console.log(error);
+      const axiosError = error as AxiosError;
+      setIsSnackbarOpen(true);
+      setSnackbarMessage(
+        `${axiosError.response?.status} - ${axiosError.response?.statusText}`
+      );
+      setSnackbarSeverity("error");
     }
   };
 
@@ -33,6 +42,7 @@ const Cities = () => {
           <CitiesCard key={index} index={index} city={city} />
         ))}
       </div>
+      <Snackbar />
     </>
   );
 };

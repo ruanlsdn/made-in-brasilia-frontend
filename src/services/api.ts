@@ -5,7 +5,7 @@ import { iCreateUserDto } from "../interfaces/iCreateUserDto";
 import { iLoginDto } from "../interfaces/iLoginDto";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 // LOGIN REQUEST

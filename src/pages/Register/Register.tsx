@@ -10,8 +10,13 @@ import { iCreateUserDto } from "../../interfaces/iCreateUserDto";
 import { createUserRequest } from "../../services/api";
 import "./register.css";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { Snackbar } from "../../components";
+import { AxiosError } from "axios";
+import { useApplicationControlContext } from "../../contexts/ApplicationControlContext";
 
 const Register = () => {
+  const { setIsSnackbarOpen, setSnackbarMessage, setSnackbarSeverity } =
+    useApplicationControlContext();
   const [image, setImage] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newUsername, setNewUsername] = useState("");
@@ -41,7 +46,12 @@ const Register = () => {
         navigate("/login");
       }
     } catch (error) {
-      console.log(error);
+      const axiosError = error as AxiosError;
+      setIsSnackbarOpen(true);
+      setSnackbarMessage(
+        `${axiosError.response?.status} - ${axiosError.response?.statusText}`
+      );
+      setSnackbarSeverity("error");
     }
   };
 
@@ -98,6 +108,7 @@ const Register = () => {
       <div className="register-login">
         <Link to={"/login"}>Entrar</Link>
       </div>
+      <Snackbar />
     </div>
   );
 };

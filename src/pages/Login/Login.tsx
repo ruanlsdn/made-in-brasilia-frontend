@@ -5,16 +5,20 @@ import { Link, useNavigate } from "react-router-dom";
 import bsb_1 from "../../assets/bsb_1.jpg";
 import bsb_2 from "../../assets/bsb_2.jpg";
 import bsb_3 from "../../assets/bsb_3.jpg";
+import { Snackbar } from "../../components";
+import { useApplicationControlContext } from "../../contexts/ApplicationControlContext";
 import { useAuthControlContext } from "../../contexts/AuthControlContext";
 import { iLoginDto } from "../../interfaces/iLoginDto";
 import "./login.css";
 
 const Login = () => {
+  const { signIn } = useAuthControlContext();
+  const { setIsSnackbarOpen, setSnackbarMessage, setSnackbarSeverity } =
+    useApplicationControlContext();
   const [image, setImage] = useState("");
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const navigate = useNavigate();
-  const { signIn } = useAuthControlContext();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,9 +28,15 @@ const Login = () => {
       password: newPassword,
     };
 
-    const response = await signIn(dto);
-
-    if (response) navigate("/cities");
+    try {
+      const response = await signIn(dto);
+      if (response) navigate("/cities");
+    } catch (error) {
+      const err = error as Error;
+      setIsSnackbarOpen(true);
+      setSnackbarMessage(err.message);
+      setSnackbarSeverity("error");
+    }
   };
 
   useEffect(() => {
@@ -75,6 +85,7 @@ const Login = () => {
       <div className="login-register">
         <Link to={"/register"}>Registrar-se</Link>
       </div>
+      <Snackbar />
     </div>
   );
 };

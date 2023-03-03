@@ -1,11 +1,13 @@
 import { Pagination } from "@mui/material";
+import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { Carousel } from "react-responsive-carousel";
 import { useLocation } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
-import { Comments, Navbar } from "../../components";
+import { Comments, Navbar, Snackbar } from "../../components";
 import { SINGLE_PLACE_PAGE } from "../../constants/static-texts";
+import { useApplicationControlContext } from "../../contexts/ApplicationControlContext";
 import { useAuthControlContext } from "../../contexts/AuthControlContext";
 import { iCreateCommentDto } from "../../interfaces/iCreateCommentDto";
 import { iCreatePostRatingDto } from "../../interfaces/iCreatePostRatingDto";
@@ -22,6 +24,8 @@ import {
 import "./single-place.css";
 
 const SinglePlace = () => {
+  const { setIsSnackbarOpen, setSnackbarMessage, setSnackbarSeverity } =
+    useApplicationControlContext();
   const { user } = useAuthControlContext();
   const { state } = useLocation();
   const post: iPost = state.place;
@@ -39,7 +43,12 @@ const SinglePlace = () => {
       const response = await listAllCommentsRequest(page - 1, post.id);
       setComments(response.data);
     } catch (error) {
-      console.log(error);
+      const axiosError = error as AxiosError;
+      setIsSnackbarOpen(true);
+      setSnackbarMessage(
+        `${axiosError.response?.status} - ${axiosError.response?.statusText}`
+      );
+      setSnackbarSeverity("error");
     }
   };
 
@@ -54,7 +63,12 @@ const SinglePlace = () => {
       const response = await createCommentRequest(dto);
       setRefreshComments((prev) => !prev);
     } catch (error) {
-      console.log(error);
+      const axiosError = error as AxiosError;
+      setIsSnackbarOpen(true);
+      setSnackbarMessage(
+        `${axiosError.response?.status} - ${axiosError.response?.statusText}`
+      );
+      setSnackbarSeverity("error");
     }
     setComment("");
   };
@@ -70,7 +84,12 @@ const SinglePlace = () => {
       const response = await createPostRatingRequest(dto);
       setRefreshRating((prev) => !prev);
     } catch (error) {
-      console.log(error);
+      const axiosError = error as AxiosError;
+      setIsSnackbarOpen(true);
+      setSnackbarMessage(
+        `${axiosError.response?.status} - ${axiosError.response?.statusText}`
+      );
+      setSnackbarSeverity("error");
     }
   };
 
@@ -82,7 +101,12 @@ const SinglePlace = () => {
       );
       setImage(base64Array);
     } catch (error) {
-      console.log(error);
+      const axiosError = error as AxiosError;
+      setIsSnackbarOpen(true);
+      setSnackbarMessage(
+        `${axiosError.response?.status} - ${axiosError.response?.statusText}`
+      );
+      setSnackbarSeverity("error");
     }
   };
 
@@ -91,7 +115,12 @@ const SinglePlace = () => {
       const response = await listAllCommentsRequest(0, post.id);
       setComments(response.data);
     } catch (error) {
-      console.log(error);
+      const axiosError = error as AxiosError;
+      setIsSnackbarOpen(true);
+      setSnackbarMessage(
+        `${axiosError.response?.status} - ${axiosError.response?.statusText}`
+      );
+      setSnackbarSeverity("error");
     }
   };
 
@@ -100,7 +129,12 @@ const SinglePlace = () => {
       const response = await calculatePostRateAvgRequest(post.id);
       setRate(response.data);
     } catch (error) {
-      console.log(error);
+      const axiosError = error as AxiosError;
+      setIsSnackbarOpen(true);
+      setSnackbarMessage(
+        `${axiosError.response?.status} - ${axiosError.response?.statusText}`
+      );
+      setSnackbarSeverity("error");
     }
   };
 
@@ -109,7 +143,12 @@ const SinglePlace = () => {
       const response = await existsUserVote(user!.id);
       setIsPostVoted(response.data);
     } catch (error) {
-      console.log(error);
+      const axiosError = error as AxiosError;
+      setIsSnackbarOpen(true);
+      setSnackbarMessage(
+        `${axiosError.response?.status} - ${axiosError.response?.statusText}`
+      );
+      setSnackbarSeverity("error");
     }
   };
 
@@ -247,6 +286,7 @@ const SinglePlace = () => {
           </>
         )}
       </div>
+      <Snackbar />
     </>
   );
 };

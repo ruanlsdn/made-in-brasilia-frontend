@@ -12,3 +12,4 @@ export { default as ProtectedLayout } from "./ProtectedLayout/ProtectedLayout";
 export { default as ChatBody } from "./ChatBody/ChatBody";
 export { default as ChatSidebar } from "./ChatSidebar/ChatSidebar";
 export { default as ChatSidebarLinks } from "./ChatSidebarLinks/ChatSidebarLinks";
+export { default as Snackbar } from "./Snackbar/Snackbar";
