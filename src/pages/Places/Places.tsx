@@ -21,9 +21,7 @@ const Places = () => {
     } catch (error) {
       const axiosError = error as AxiosError;
       setIsSnackbarOpen(true);
-      setSnackbarMessage(
-        `${axiosError.response?.status} - ${axiosError.response?.statusText}`
-      );
+      setSnackbarMessage(axiosError.message);
       setSnackbarSeverity("error");
     }
   };
