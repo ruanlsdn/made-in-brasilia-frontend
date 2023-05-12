@@ -5,10 +5,12 @@ import { NavbarLinks, ToggleMenu } from "..";
 import { useAuthControlContext } from "../../contexts/AuthControlContext";
 import { useDataControlContext } from "../../contexts/DataControlContext";
 import "./navbar.css";
+import { useChatControlContext } from "../../contexts/ChatControlContext";
 
 const Navbar = () => {
   const { user } = useAuthControlContext();
   const { selectedCity, selectedPost } = useDataControlContext();
+  const { setShowBody } = useChatControlContext();
   const { pathname } = useLocation();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -40,7 +42,13 @@ const Navbar = () => {
         )}
         {user && pathname.includes("/chats") && (
           <>
-            <button className="navbar-links-item" onClick={() => navigate(-1)}>
+            <button
+              className="navbar-links-item"
+              onClick={() => {
+                navigate(-1);
+                setShowBody(false);
+              }}
+            >
               <FiChevronLeft size={35} color={"white"} />
             </button>
             <NavbarLinks title={"CHATS"} />

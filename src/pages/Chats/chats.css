@@ -77,6 +77,13 @@
   justify-content: flex-start;
 }
 
+.single-chat-date-info {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
 .single-chat-user-info h1,
 p {
   font-family: var(--font-family);
@@ -89,6 +96,9 @@ p {
 
 .single-chat-user-info p {
   font-size: 18px;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: var(--secondary-color);
 }
 
@@ -131,6 +141,7 @@ p {
   background-color: rgb(124, 122, 0);
   width: fit-content;
   max-width: 50%;
+  overflow-wrap: break-word;
 }
 
 .chat-body-message-reverse {
@@ -141,6 +152,17 @@ p {
   align-self: flex-end;
   width: fit-content;
   max-width: 50%;
+  overflow-wrap: break-word;
+}
+
+.chat-body-date {
+  align-self: flex-start;
+  color: var(--secondary-color);
+}
+
+.chat-body-date-reverse {
+  align-self: flex-end;
+  color: var(--secondary-color);
 }
 
 .chat-prompt {

@@ -47,7 +47,6 @@ const ChatBody = () => {
       const messages: iMessage[] = chatSnapshot.data()?.messages;
       setMessages(messages);
     });
-
     return () => unsubscribe();
   }, [docRef]);
 
@@ -60,6 +59,13 @@ const ChatBody = () => {
       <div className="chat-body-content gradient-bg">
         {messages.map((item, index) => (
           <>
+            <p
+              className={`chat-body-date  ${
+                item?.userId != user?.id ? "" : "chat-body-date-reverse"
+              }`}
+            >
+              {new Date(item.createdAt.seconds * 1000).toLocaleString()}
+            </p>
             <div
               key={index}
               className={`chat-body-message  ${

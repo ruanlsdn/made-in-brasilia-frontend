@@ -1,5 +1,8 @@
 export interface iMessage {
   userId: string;
   text: string;
-  createdAt: string;
+  createdAt: {
+    seconds: number;
+    nanoseconds: number;
+  };
 }

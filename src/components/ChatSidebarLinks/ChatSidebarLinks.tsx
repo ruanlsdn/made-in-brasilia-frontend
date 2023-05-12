@@ -11,13 +11,18 @@ import { FaUserCircle } from "react-icons/fa";
 import { useAuthControlContext } from "../../contexts/AuthControlContext";
 import { useChatControlContext } from "../../contexts/ChatControlContext";
 import { iFirebaseUser } from "../../interfaces/iFirebaseUser";
+import { iMessage } from "../../interfaces/iMessage";
 import { db } from "../../services/firebase";
 
 type ChatSidebarLinksProps = {
   receiverId: string;
+  lastMessage: iMessage | undefined;
 };
 
-const ChatSidebarLinks = ({ receiverId }: ChatSidebarLinksProps) => {
+const ChatSidebarLinks = ({
+  receiverId,
+  lastMessage,
+}: ChatSidebarLinksProps) => {
   const { user } = useAuthControlContext();
   const { setSelectedUser } = useChatControlContext();
   const [receiver, setReceiver] = useState<iFirebaseUser | null>(null);
@@ -56,8 +61,20 @@ const ChatSidebarLinks = ({ receiverId }: ChatSidebarLinksProps) => {
     }
   };
 
+  const showDate = () => {
+    const lastDate: number | undefined = lastMessage?.createdAt.seconds;
+    let date = "";
+
+    if (lastDate) {
+      new Date() === new Date(lastDate! * 1000)
+        ? (date = new Date(lastDate! * 1000).toLocaleTimeString())
+        : (date = new Date(lastDate! * 1000).toLocaleDateString());
+    }
+
+    return date;
+  };
+
   useEffect(() => {
-    console.log(receiverId);
     const fetchUserReceiver = async () => {
       const usersRef = collection(db, "users");
       const q = query(usersRef, where("id", "==", receiverId));
@@ -75,10 +92,15 @@ const ChatSidebarLinks = ({ receiverId }: ChatSidebarLinksProps) => {
 
   return (
     <div className="single-chat single-chat-hover" onClick={handleClick}>
-      <FaUserCircle className="single-chat-icon" size={10} color={"white"} />
+      <div>
+        <FaUserCircle className="single-chat-icon" size={10} color={"white"} />
+      </div>
       <div className="single-chat-user-info">
         <h1>{receiver?.username}</h1>
-        <p>{""}</p>
+        <p>{lastMessage?.text}</p>
+      </div>
+      <div className="single-chat-date-info">
+        <p>{showDate()}</p>
       </div>
     </div>
   );

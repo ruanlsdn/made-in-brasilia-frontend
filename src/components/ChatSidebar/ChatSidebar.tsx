@@ -62,11 +62,14 @@ const ChatSidebar = () => {
           <AiOutlineSearch size={30} />
         </button>
       </div>
-      {searchUser && <ChatSidebarLinks receiverId={searchUser.id} />}
+      {searchUser && (
+        <ChatSidebarLinks receiverId={searchUser.id} lastMessage={undefined} />
+      )}
       {chats.map((chat, index) => (
         <ChatSidebarLinks
           receiverId={chat.users.filter((item) => item != user?.id)[0]}
           key={index}
+          lastMessage={chat.messages.findLast((message) => message)}
         />
       ))}
     </div>
