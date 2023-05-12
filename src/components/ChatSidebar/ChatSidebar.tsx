@@ -6,6 +6,7 @@ import { iChat } from "../../interfaces/iChat";
 import { iFirebaseUser } from "../../interfaces/iFirebaseUser";
 import { db } from "../../services/firebase";
 import ChatSidebarLinks from "../ChatSidebarLinks/ChatSidebarLinks";
+import { iMessage } from "../../interfaces/iMessage";
 
 const ChatSidebar = () => {
   const { user } = useAuthControlContext();
@@ -73,7 +74,7 @@ const ChatSidebar = () => {
         <ChatSidebarLinks
           receiverId={chat.users.filter((item) => item != user?.id)[0]}
           key={index}
-          lastMessage={chat.messages.findLast((message) => message)}
+          lastMessage={chat.messages.findLast((message: iMessage) => message)}
         />
       ))}
     </div>
