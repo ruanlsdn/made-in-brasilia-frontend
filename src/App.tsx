@@ -1,12 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Navbar, ProtectedLayout } from "./components";
+import { ProtectedLayout } from "./components";
 import {
   Chats,
   Cities,
   Error,
   Home,
   Login,
+  Password,
   Places,
   Register,
   SinglePlace,
@@ -20,6 +21,7 @@ function App() {
         <Route path={"/"} element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="forgot-password" element={<Password />} />
         <Route
           path={"cities"}
           element={

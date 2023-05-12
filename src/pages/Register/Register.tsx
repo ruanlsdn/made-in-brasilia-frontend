@@ -30,6 +30,7 @@ const Register = () => {
         email: newEmail,
         username: newUsername,
         password: newPassword,
+        userTypeId: 1,
       };
 
       const response = await createUserRequest(dto);

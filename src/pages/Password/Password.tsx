@@ -1,4 +1,5 @@
 import { TextField } from "@mui/material";
+import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { FiSun } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,34 +8,32 @@ import bsb_2 from "../../assets/bsb_2.jpg";
 import bsb_3 from "../../assets/bsb_3.jpg";
 import { Snackbar } from "../../components";
 import { useApplicationControlContext } from "../../contexts/ApplicationControlContext";
-import { useAuthControlContext } from "../../contexts/AuthControlContext";
-import { iLoginDto } from "../../interfaces/iLoginDto";
-import "./login.css";
+import { iNewPasswordDto } from "../../interfaces/iNewPasswordDto";
+import { changePassowrdRequest } from "../../services/api";
+import "./password.css";
 
-const Login = () => {
-  const { signIn } = useAuthControlContext();
+const Password = () => {
   const { setIsSnackbarOpen, setSnackbarMessage, setSnackbarSeverity } =
     useApplicationControlContext();
   const [image, setImage] = useState("");
-  const [newUsername, setNewUsername] = useState("");
+  const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const dto: iLoginDto = {
-      username: newUsername,
-      password: newPassword,
-    };
-
     try {
-      const response = await signIn(dto);
-      if (response) navigate("/cities");
+      const dto: iNewPasswordDto = {
+        email: newEmail,
+        password: newPassword,
+      };
+
+      const response = await changePassowrdRequest(dto);
+      if (response.status == 200) navigate("/login");
     } catch (error) {
-      const err = error as Error;
+      const axiosError = error as AxiosError;
       setIsSnackbarOpen(true);
-      setSnackbarMessage(err.message);
+      setSnackbarMessage(axiosError.message);
       setSnackbarSeverity("error");
     }
   };
@@ -46,48 +45,47 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="login-container scale-up-hor-center-02">
-      <div className="login-icons">
+    <div className="register-container scale-up-hor-center-02">
+      <div className="register-icons">
         <FiSun size={30} />
         <h3>Made in Brasília</h3>
       </div>
-      <div className="login-image-container">
-        <img className="login-image" src={image} alt="image" />
+      <div className="register-image-container">
+        <img className="register-image" src={image} alt="image" />
       </div>
-      <div className="login-form-container gradient-bg ">
-        <h1>Bem-vindo de volta</h1>
-        <p>Preencha o formulário abaixo para entrar</p>
-        <form className="login-form " onSubmit={handleSubmit}>
-          <div className="login-form-input-container">
+      <div className="register-form-container gradient-bg">
+        <h1>Altere sua senha</h1>
+        <p>Preencha o formulário abaixo para alterar a senha</p>
+        <form className="register-form" onSubmit={handleSubmit}>
+          <div className="register-form-input-container">
             <TextField
-              className="login-form-input"
-              id="username"
-              placeholder="Usuário"
-              onChange={(e) => setNewUsername(e.target.value)}
+              className="register-form-input"
+              id="email"
+              placeholder="Email"
+              onChange={(e) => setNewEmail(e.target.value)}
               required
             />
             <TextField
-              className="login-form-input"
+              className="register-form-input"
               type={"password"}
               id="password"
               placeholder="Senha"
               onChange={(e) => setNewPassword(e.target.value)}
               required
             />
-            <Link to="/forgot-password">Esqueci a senha</Link>
           </div>
           <button className="gradient-bg-colorful" type="submit">
-            <span>Entrar</span>
+            <span>Alterar</span>
           </button>
         </form>
         <div></div>
       </div>
-      <div className="login-register">
-        <Link to={"/register"}>Registrar-se</Link>
+      <div className="register-login">
+        <Link to={"/login"}>Entrar</Link>
       </div>
       <Snackbar />
     </div>
   );
 };
 
-export default Login;
+export default Password;

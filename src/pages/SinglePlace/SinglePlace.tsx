@@ -182,7 +182,7 @@ const SinglePlace = () => {
             </a>
           </div>
           <div className="single-place-carousel-description-texts">
-            <p>{post.PostCategory.description}</p>
+            <p>{post.postCategory.description}</p>
           </div>
           <div className="single-place-carousel-description-texts">
             <p>{`${post?.openDay} - ${post?.closeDay}`}</p>

@@ -3,6 +3,7 @@ import { iCreateCommentDto } from "../interfaces/iCreateCommentDto";
 import { iCreatePostRatingDto } from "../interfaces/iCreatePostRatingDto";
 import { iCreateUserDto } from "../interfaces/iCreateUserDto";
 import { iLoginDto } from "../interfaces/iLoginDto";
+import { iNewPasswordDto } from "../interfaces/iNewPasswordDto";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -17,6 +18,10 @@ export const loginRequest = async (dto: iLoginDto) => {
 // USER REQUEST
 export const createUserRequest = async (dto: iCreateUserDto) => {
   return await api.post("/user", dto);
+};
+
+export const changePassowrdRequest = async (dto: iNewPasswordDto) => {
+  return await api.patch("/user", dto);
 };
 
 export const findUniqueUserRequest = async (id: string) => {

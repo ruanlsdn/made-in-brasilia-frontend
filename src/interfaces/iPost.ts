@@ -18,5 +18,5 @@ export interface iPost {
   openTime: string;
   closeTime: string;
   PostStatus: iPostStatus;
-  PostCategory: iPostCategory;
+  postCategory: iPostCategory;
 }
