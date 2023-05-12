@@ -66,7 +66,7 @@ const ChatSidebarLinks = ({
     let date = "";
 
     if (lastDate) {
-      new Date() === new Date(lastDate! * 1000)
+      new Date().toDateString() === new Date(lastDate! * 1000).toDateString()
         ? (date = new Date(lastDate! * 1000).toLocaleTimeString())
         : (date = new Date(lastDate! * 1000).toLocaleDateString());
     }

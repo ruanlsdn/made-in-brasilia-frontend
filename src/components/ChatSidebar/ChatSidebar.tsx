@@ -1,4 +1,4 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useAuthControlContext } from "../../contexts/AuthControlContext";
@@ -29,7 +29,11 @@ const ChatSidebar = () => {
 
   const fetchAvailableChats = async () => {
     const chatsRef = collection(db, "chats");
-    const q = query(chatsRef, where("users", "array-contains", user?.id));
+    const q = query(
+      chatsRef,
+      where("users", "array-contains", user?.id),
+      orderBy("createdAt", "desc")
+    );
 
     try {
       const querySnapshot = await getDocs(q);
