@@ -74,7 +74,7 @@ const ChatSidebar = () => {
         <ChatSidebarLinks
           receiverId={chat.users.filter((item) => item != user?.id)[0]}
           key={index}
-          lastMessage={chat.messages.findLast((message: iMessage) => message)}
+          lastMessage={chat.messages[chat.messages.length - 1]}
         />
       ))}
     </div>
