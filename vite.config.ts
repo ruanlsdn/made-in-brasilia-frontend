@@ -8,7 +8,11 @@ export default defineConfig({
     port: 3000,
     watch: {
       usePolling: true,
-    }
+    },
+  },
+  preview: {
+    host: true,
+    port: 3000,
   },
   plugins: [react()],
 })
