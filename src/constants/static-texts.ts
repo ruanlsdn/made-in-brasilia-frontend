@@ -25,16 +25,16 @@ export const HOME_PAGE = {
   title_group1_footer: "Redes Sociais",
   title_group2_footer: "Repositório",
   title_group3_footer: "Contato",
-  title_link1_footer: "Linkedin - Osmar",
-  title_link2_footer: "Linkedin - Mateus",
-  title_link3_footer: "Frontend",
-  title_link4_footer: "Backend",
-  title_link5_footer: "Admin",
-  title_link6_footer: "Email - Osmar",
-  title_link7_footer: "Email - Mateus",
-  path1_footer: "link footer",
-  path2_footer: "link footer",
-  path3_footer: "link footer",
+  title_link1_footer: "Osmar",
+  title_link2_footer: "Mateus",
+  title_group2_link1_footer: "Frontend",
+  title_group2_link2_footer: "Backend",
+  title_group2_link3_footer: "Admin",
+  title_group1_link1_path_footer: "https://www.linkedin.com/in/osmar-ribeiro-114923234/",
+  title_group1_link2_path_footer: "https://www.linkedin.com/in/mtscouto/",
+  title_group3_link1_path_footer: "mailto:osmar.ferreira@estudante.ifb.edu.br",
+  title_group3_link2_path_footer: "mailto:mtscoutos@gmail.com",
+  title_group2_link1_path_footer: "#"
 };
 
 export const SINGLE_PLACE_PAGE = {

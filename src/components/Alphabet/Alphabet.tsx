@@ -43,7 +43,7 @@ const Alphabet = () => {
       <button
         className="gradient-text"
         onClick={() => {
-          handleClick("*");
+          handleClick("A-Z");
         }}
       >
         *<p>-</p>
