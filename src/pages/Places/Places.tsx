@@ -37,9 +37,13 @@ const Places = () => {
         <Alphabet />
       </div>
       <div className="places-content">
-        {filteredPosts.map((place, index) => (
-          <PlacesCard key={index} place={place} />
-        ))}
+        {filteredPosts.map((place, index) =>
+          place.PostStatus.id === 2 ? (
+            <PlacesCard key={index} place={place} />
+          ) : (
+            <h1>Ainda não há registros disponíveis</h1>
+          )
+        )}
       </div>
       <Snackbar />
     </>
