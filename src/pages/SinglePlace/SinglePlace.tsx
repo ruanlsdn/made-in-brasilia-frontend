@@ -167,7 +167,7 @@ const SinglePlace = () => {
             {image.map((img, index) => (
               <div key={index}>
                 <img
-                  style={{ objectFit: "fill" }}
+                  style={{ objectFit: "fill", width: "50%" }}
                   className="carousel-img"
                   src={img}
                 />
