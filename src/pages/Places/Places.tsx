@@ -38,15 +38,9 @@ const Places = () => {
       </div>
       <div className="places-content">
         {filteredPosts.length > 0 ? (
-          filteredPosts.some((place) => place.PostStatus.id === 2) ? (
-            filteredPosts.map((place, index) =>
-              place.PostStatus.id === 2 ? (
-                <PlacesCard key={index} place={place} />
-              ) : null
-            )
-          ) : (
-            <h1>Ainda não há registros disponíveis</h1>
-          )
+          filteredPosts.map((place, index) =>
+              <PlacesCard key={index} place={place} />
+          ) 
         ) : (
           <h1>Ainda não há registros disponíveis</h1>
         )}
