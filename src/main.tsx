@@ -7,6 +7,7 @@ import { AuthControlProvider } from "./contexts/AuthControlContext";
 import { ChatControlProvider } from "./contexts/ChatControlContext";
 import { DataControlProvider } from "./contexts/DataControlContext";
 import "./index.css";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
