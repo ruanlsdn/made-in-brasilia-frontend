@@ -8,7 +8,7 @@ const Error = () => {
     <div className="error-container gradient-bg">
       <img src={broken_robot} alt="error" />
       {user ? (
-        <a href="/cities">Ocorreu um erro... volte para a página de cidades</a>
+        <a href="/cities">Ocorreu um erro... volte para a página de bairros</a>
       ) : (
         <a href="/">Ocorreu um erro... volte para a página inicial</a>
       )}

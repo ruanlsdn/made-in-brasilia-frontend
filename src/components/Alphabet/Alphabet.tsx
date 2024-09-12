@@ -11,7 +11,7 @@ const Alphabet = () => {
   const handleClick = (letter: string) => {
     if (pathname.includes("cities")) {
       switch (letter) {
-        case "*":
+        case "A-Z":
           setFilteredCities(cities);
           break;
 
@@ -24,7 +24,7 @@ const Alphabet = () => {
       }
     } else {
       switch (letter) {
-        case "*":
+        case "A-Z":
           setFilteredPosts(posts);
           break;
 
@@ -43,10 +43,10 @@ const Alphabet = () => {
       <button
         className="gradient-text"
         onClick={() => {
-          handleClick("*");
+          handleClick("A-Z");
         }}
       >
-        *<p>-</p>
+        A-Z <p>-</p>
       </button>
       {ALPHABET.map((letter, index) => (
         <button

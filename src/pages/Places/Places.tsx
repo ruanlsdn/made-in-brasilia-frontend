@@ -37,10 +37,15 @@ const Places = () => {
         <Alphabet />
       </div>
       <div className="places-content">
-        {filteredPosts.map((place, index) => (
-          <PlacesCard key={index} place={place} />
-        ))}
+        {filteredPosts.length > 0 ? (
+          filteredPosts.map((place, index) =>
+              <PlacesCard key={index} place={place} />
+          ) 
+        ) : (
+          <h1>Ainda não há registros disponíveis</h1>
+        )}
       </div>
+
       <Snackbar />
     </>
   );
